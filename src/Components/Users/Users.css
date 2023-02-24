@@ -1,0 +1,16 @@
+.users__item{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.pagination__item{
+    font-size: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.active{
+    font-weight: bold;
+}
+.users {
+    position: relative;
+}

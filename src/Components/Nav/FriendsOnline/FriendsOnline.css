@@ -1,0 +1,5 @@
+
+.friends{
+    display: flex;
+    flex-wrap: wrap;
+}

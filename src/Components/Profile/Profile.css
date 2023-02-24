@@ -1,0 +1,13 @@
+.content{
+    grid-area: c;
+    background-color: blue;
+}
+.content_background{
+    width: 80%;
+}
+.profile__description{   
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}

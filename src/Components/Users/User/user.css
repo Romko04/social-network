@@ -1,0 +1,12 @@
+.user__img{
+    width: 150px;
+}
+.user{
+    width: 150px;
+    margin-left: 20px;
+}
+.user__content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

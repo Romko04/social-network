@@ -1,0 +1,19 @@
+.friends__item{
+    margin-right: 15px;
+    position: relative;
+}
+.friends__item-img{
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+}
+.friends__item::after{
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    bottom: 0;
+    border-radius: 50%;
+    background-color: yellow;
+    z-index: 10;
+}

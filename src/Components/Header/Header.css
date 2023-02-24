@@ -1,0 +1,21 @@
+.header{
+    grid-area: h;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+}
+.header__img{
+    width: 55px;
+    height: 60px;
+}
+.headel__login-link{
+    font-size: 20px;
+    color: #fff;
+}
+.header__nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

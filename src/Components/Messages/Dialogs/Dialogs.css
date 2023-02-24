@@ -1,0 +1,14 @@
+
+.dialog__active {
+    color: gold;
+    font-size: 20px;
+}
+.dialogs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.dialog__img{
+    height: 60px;
+    border-radius: 50%;
+}
