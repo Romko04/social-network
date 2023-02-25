@@ -17,6 +17,12 @@ const ProfileContainer = (props) => {
             props.profileUserThunk(userId)
             props.statusUserThunk(userId)
     },[])
+    useEffect(()=>{
+        let userId = props.router.params.userId
+        if (!userId) userId = 27942
+            props.profileUserThunk(userId)
+            props.statusUserThunk(userId)
+    },[props.router.params.userId])
     return (
         <Profile {...props} />
     )
