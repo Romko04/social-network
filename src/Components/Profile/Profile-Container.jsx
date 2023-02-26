@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { createActionAddPost, createActionChangePost, setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk } from '../Redux/profile-reducer'
+import { createActionAddPost, createActionChangePost, setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto } from '../Redux/profile-reducer'
 import Profile from './Profile'
 import {
     useLocation,
@@ -54,7 +54,10 @@ let mapDispatchToProps = (dispatch) => {
         },
         updateStatusThunk: (status) => {
             dispatch(updateStatusThunk(status))
-        }
+        },
+        addPhoto: (file) => {
+            dispatch(addPhoto(file))
+        },
     }
 }
 function withRouter(Component) {

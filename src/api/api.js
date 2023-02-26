@@ -28,6 +28,17 @@ export const updateStatusProfile = (status) => {
 export const loginAuth = (email,password,rememberMe) => {
     return instance.post(`/auth/login/`, {email,password,rememberMe}).then(res => res.data)
 }
-export const logoutAuth = () => {
-    return instance.delete(`/auth/login/`).then(res => res.data)
+export const logoutAuth = async () => {
+    const res = await instance.delete(`/auth/login/`)
+    return res.data
+}
+export const updatePhoto = async (photo) => {
+    let data = new FormData()
+    data.append('image', photo)
+    const res = await instance.put(`/profile/photo`, data, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    return res.data
 }

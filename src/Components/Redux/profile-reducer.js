@@ -1,9 +1,11 @@
-import { getStatusProfile, userProfileApi, updateStatusProfile } from "../../api/api"
+import { getStatusProfile, userProfileApi, updateStatusProfile, updatePhoto } from "../../api/api"
 
 const add_post = 'ADDPOST'
 const change_post = 'CHANGEPOST'
 const set_profile_id = 'set_profile_id'
 const set_user_status = 'setUserStatus'
+const set_photo = 'setPhoto'
+
 
 export const createActionAddPost = () => ({ type: add_post })
 export const createActionChangePost = (text) => {
@@ -22,6 +24,12 @@ export const setUserStatus = (status) => {
     return {
         type: set_user_status,
         status
+    }
+}
+export const setPhoto = (data) => {
+    return {
+        type: set_photo,
+        photos: data
     }
 }
 let def = {
@@ -68,6 +76,14 @@ const profileReducer = (state = def, action) => {
                 status: action.status
             }
         }
+        case set_photo: {
+
+            console.log(action.data);
+            return {
+                ...state,
+                profileId: {...state.profileId, photos: action.photos}
+            }
+        }
         default:
             return state
     }
@@ -89,6 +105,14 @@ export const updateStatusThunk= (status) => {
         const data = await updateStatusProfile(status)
             if (data.resultCode === 0) {
                 dispatch(setUserStatus(status))
+            }
+    }
+}
+export const addPhoto = (file) => {
+    return async (dispatch) => {
+        const data = await updatePhoto(file)
+            if (data.resultCode === 0) {
+                dispatch(setPhoto(data.data.photos))
             }
     }
 }

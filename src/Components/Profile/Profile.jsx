@@ -5,12 +5,15 @@ import'./Profile.css'
 import ProfileStatus from './ProfileInfo/ProfileStatus'
 
 const Profile = (props) => {
-    let textPost = React.createRef()
-    let changeNewPost = () => {
+    const textPost = React.createRef()
+    const changeNewPost = () => {
         props.onChangeNewPost(textPost.current.value)
     }
-    let addPost = () => {
+    const addPost = () => {
         props.onAddPost()
+    }
+    const onAddPhoto = (e) => {
+        props.addPhoto(e.target.files[0])
     }
     if (!props.profileId) {
         return <Preloader />
@@ -19,6 +22,7 @@ const Profile = (props) => {
         <div className='content'>
             <div className="profile__description">
                 <img src={props.profileId.photos.large || 'https://th.bing.com/th/id/R.aa0dc156cb44d0a2080ad0dd36ea216e?rik=8P1Q2UFnhLHE8g&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_80352.png&ehk=icgjtf%2fljaB6v78NlA0ABgusrHm5aqDMlI44ob6HvUc%3d&risl=&pid=ImgRaw&r=0'} alt="" />
+                <input onChange={onAddPhoto} type="file" name="" id="" />
                 <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk} />
             </div>
             <div>
