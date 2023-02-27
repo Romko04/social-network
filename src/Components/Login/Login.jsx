@@ -2,7 +2,7 @@ import React from 'react';
  import { useFormik } from 'formik';
  import './Login.css'
 import { connect } from 'react-redux';
-import { loginThunk } from '../Redux/auth-reducer';
+import { deleteCaptcha, loginThunk } from '../Redux/auth-reducer';
 import { Navigate } from 'react-router-dom';
  const validate = values => {
   const errors = {};
@@ -25,11 +25,13 @@ const LoginForm = (props) => {
     initialValues: {
       email: '',
       password: '',
-      rememberMe: false
+      rememberMe: false,
+      captcha: ''
     },
     validate,
     onSubmit: values => {
-      props.loginThunk(values.email, values.password, values.rememberMe, formik.setErrors)
+      props.deleteCaptcha()
+      props.loginThunk(values.email, values.password, values.rememberMe,values.captcha, formik.setErrors)
     }
   })
   return (
@@ -69,7 +71,17 @@ const LoginForm = (props) => {
           validate={validate}
         />
         <label>rememberMe</label>
+        {props.captcha && <div><img src={props.captcha.url} alt="" /></div>}
       </div>
+      {props.captcha && <div>
+        <input
+            id="captcha"
+            name="captcha"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.captcha}
+          />
+      </div>}
       {formik.errors.apiError ? <div>{formik.errors.apiError}</div> : null}
       <button type="submit">Submit</button>
     </form>
@@ -86,6 +98,7 @@ const Login = (props) => {
   );
 }
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  captcha: state.auth.captcha
 })
- export default connect(mapStateToProps,{loginThunk})(Login);
+ export default connect(mapStateToProps,{loginThunk,deleteCaptcha})(Login);

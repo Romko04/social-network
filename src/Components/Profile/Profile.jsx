@@ -28,7 +28,7 @@ const Profile = (props) => {
                 {!props.router.params.userId&& <input onChange={onAddPhoto} type="file" name="" id="" />}
                 <ProfileStatus userId={props.router.params.userId} status={props.status} updateStatusThunk={props.updateStatusThunk} />
             </div>
-            {edit?<ProfileDataForm saveProfile={props.saveProfile} setEdit={setEdit} profileId={props.profileId} /> :<ProfileData profileId={props.profileId} setEdit={setEdit}/> }
+            {edit?<ProfileDataForm saveProfile={props.saveProfile} setEdit={setEdit} profileId={props.profileId} /> :<ProfileData router={props.router} profileId={props.profileId} setEdit={setEdit}/> }
             <div>
                 <textarea className='content__post' onChange={changeNewPost} value={props.newPostText} ref={textPost}></textarea>
                 <div className=""><button className='content__post-btn' onClick={addPost}>Add Post</button></div>

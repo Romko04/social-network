@@ -1,8 +1,8 @@
 export const ProfileData = (props)=>{
-    let {setEdit, profileId} = props
+    let {setEdit, profileId, router} = props
     return (
         <div className="profile__data-items">
-            <button onClick={()=> setEdit(true)}>Edit</button>
+            {!router.params.userId&&<button onClick={()=> setEdit(true)}>Edit</button>}
             <div className="profile__data-item">
                 <span>aboutMe:</span>
                 <span>{profileId.aboutMe}</span>
