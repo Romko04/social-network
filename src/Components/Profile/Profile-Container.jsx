@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { createActionAddPost, createActionChangePost, setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto } from '../Redux/profile-reducer'
+import { createActionAddPost, createActionChangePost, setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto, saveProfile } from '../Redux/profile-reducer'
 import Profile from './Profile'
 import {
     useLocation,
@@ -57,6 +57,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         addPhoto: (file) => {
             dispatch(addPhoto(file))
+        },
+        saveProfile: (data) => {
+            dispatch(saveProfile(data))
         },
     }
 }

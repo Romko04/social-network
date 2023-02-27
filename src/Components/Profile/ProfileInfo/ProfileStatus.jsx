@@ -17,7 +17,8 @@ const ProfileStatus = (props) => {
     },[props.status])
    return (
     <div className="status">
-        {editMode
+        {props.userId&& <span className="status__text">{props.status || '==='}</span>}
+        {editMode && !props.userId
         ?<input onChange={changeStatus} autoFocus={true} onBlur={deactiveEditMode} type="text" className="status__input" value={stat} />
         :<span onDoubleClick={activeEditMode} className="status__text">{props.status || '==='}</span>
     }   

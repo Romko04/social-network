@@ -1,6 +1,8 @@
 .content{
     grid-area: c;
     background-color: blue;
+    font-size: 20px;
+    color: #fff;
 }
 .content_background{
     width: 80%;
@@ -13,4 +15,10 @@
 }
 .profile__description img {
     max-width: 200px;
+}
+.profile__data-items{
+    margin: 50px 0;
+}
+.contacts{
+    padding-left: 20px;
 }

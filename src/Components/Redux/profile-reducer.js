@@ -1,4 +1,4 @@
-import { getStatusProfile, userProfileApi, updateStatusProfile, updatePhoto } from "../../api/api"
+import { getStatusProfile, userProfileApi, updateStatusProfile, updatePhoto, safeProfileData } from "../../api/api"
 
 const add_post = 'ADDPOST'
 const change_post = 'CHANGEPOST'
@@ -77,8 +77,6 @@ const profileReducer = (state = def, action) => {
             }
         }
         case set_photo: {
-
-            console.log(action.data);
             return {
                 ...state,
                 profileId: {...state.profileId, photos: action.photos}
@@ -113,6 +111,15 @@ export const addPhoto = (file) => {
         const data = await updatePhoto(file)
             if (data.resultCode === 0) {
                 dispatch(setPhoto(data.data.photos))
+            }
+    }
+}
+export const saveProfile = (res) => {
+    return async (dispatch, getState) => {
+        let userId = getState().auth.id
+        const data = await safeProfileData(res)
+            if (data.resultCode === 0) {
+                dispatch(profileUserThunk(userId))
             }
     }
 }

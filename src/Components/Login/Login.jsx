@@ -25,14 +25,13 @@ const LoginForm = (props) => {
     initialValues: {
       email: '',
       password: '',
-      rememberMe: 'false'
+      rememberMe: false
     },
     validate,
     onSubmit: values => {
       props.loginThunk(values.email, values.password, values.rememberMe, formik.setErrors)
     }
   })
-  console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="Login">Login</label>
