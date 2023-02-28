@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from 'react'
+
 import './App.css';
 import Nav from './Components/Nav/Nav';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProfileContainer from './Components/Profile/Profile-Container';
 import MessagesContainer from './Components/Messages/Messages-Container';
 import HeaderContainer from './Components/Header/Header-Container';
@@ -23,6 +24,7 @@ class App extends React.Component {
             <HeaderContainer/>
             <Nav data={this.props.data.sideBarPage}/>
             <Routes>
+              <Route path="/" element={<Navigate to="/profile" />} />
               <Route path='/Profile/:userId?' element={<ProfileContainer />} />
               <Route path='/Messages/*' element={<MessagesContainer/>} />
               <Route path='/Users'  element={<Suspense fallback={<div>Loading...</div>}>
