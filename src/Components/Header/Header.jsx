@@ -1,15 +1,22 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import {ReactComponent as Logo} from '../../icons/logo.svg'
 import './Header.css'
-const Header = (props) => {
+const Header = ({auth,photoUser}) => {
     return (
         <header className='header'>
-            <img className='header__img' src="https://th.bing.com/th/id/OIP.JqFZCSNoNnAKCqj1C4m4ewHaHd?w=164&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="" />
-            {props.auth.isAuth
-            ?<div className='header__nav'>
-                <span className="headel__login-link">{props.auth.login}</span>
-                <button onClick={props.logoutThunk}>Logout</button>
+            <div className="header__logo">
+                <NavLink to={'/Profile/'} className='header__logo-link' >
+                    <Logo className='header__logo-img'/>
+                    <span className='header__logo-title'>SocialNet</span>
+                </NavLink>
             </div>
-            :<span className="headel__login-link" >{props.auth.isAuth?props.auth.login: 'login' }</span>
+            {auth.isAuth
+            ?<div className='header__nav'>
+                <span className="header__login-link">{auth.login}</span>
+                {photoUser?<img className='header__photo' src={photoUser.photos.small} alt="photoUser" />:''}
+            </div>
+            :<span className="headel__login-link" >{auth.isAuth?auth.login: 'login' }</span>
             }
         </header>
     )

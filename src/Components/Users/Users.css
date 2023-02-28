@@ -8,9 +8,6 @@
     margin-right: 15px;
     cursor: pointer;
 }
-.active{
-    font-weight: bold;
-}
 .users {
     position: relative;
 }

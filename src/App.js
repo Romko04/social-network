@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 
 import './App.css';
-import Nav from './Components/Nav/Nav';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProfileContainer from './Components/Profile/Profile-Container';
 import MessagesContainer from './Components/Messages/Messages-Container';
@@ -10,6 +9,7 @@ import Login from './Components/Login/Login';
 import { connect } from 'react-redux';
 import { initalApp } from './Components/Redux/app-reducer';
 import Preloader from './Components/common/Preloader';
+import NavContainer from './Components/Nav/Nav-Container';
 const HeavyComponent = lazy(() => import('./Components/Users/Users-Container'));
 class App extends React.Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class App extends React.Component {
     :  <HashRouter>
           <div className='wrapper'>
             <HeaderContainer/>
-            <Nav data={this.props.data.sideBarPage}/>
+            <NavContainer/>
             <Routes>
               <Route path="/" element={<Navigate to="/profile" />} />
               <Route path='/Profile/:userId?' element={<ProfileContainer />} />

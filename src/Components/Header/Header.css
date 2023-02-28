@@ -1,18 +1,33 @@
 .header{
     grid-area: h;
-    background-color: black;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 15px;
 }
-.header__img{
-    width: 55px;
-    height: 60px;
+.header__logo-img{
+    height: 2.5rem;
+    fill: #4d3c3c;
 }
-.headel__login-link{
-    font-size: 20px;
-    color: #fff;
+.header__photo{
+    height: 4rem;
+    border-radius: 50%;
+}
+.header__logo-link{
+    display: flex;
+    align-items:center;
+    gap: 20px ;
+}
+.header__logo-title{
+    font-size: 30px;
+    font-weight: 600;
+    color: #4d3c3c;
+}
+.header__login-link{
+    font-size: 30px;
+    font-weight: 600;
+    color: #4d3c3c;
 }
 .header__nav{
     display: flex;

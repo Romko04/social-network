@@ -11,7 +11,7 @@ export const setUserData = (id, email, login, isAuth) => {
     }
 }
 export const setCaptcha = (url) => ({type:set_captcha, url})
-export const deleteCaptcha = (url) => ({type:delete_captcha})
+export const deleteCaptcha = () => ({type:delete_captcha})
 
 
 let initialState = {
@@ -71,6 +71,7 @@ export const logoutThunk = () => {
     return async (dispatch) => {
         const data = await logoutAuth()
         if (data.resultCode === 0) {
+            debugger
             dispatch(setUserData(null, null, null, false))
         }
     }

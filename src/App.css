@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;800&family=Raleway:wght@600;700&display=swap');
 .wrapper{
+    font-family: 'Open Sans', sans-serif;
     display: grid;
     gap: 10px;
     max-width: 1500px;
@@ -7,7 +9,7 @@
     "h h"
     "n c";
 
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 80px 1fr;
     grid-template-columns: 2fr 10fr;
 }
 a{
