@@ -1,0 +1,15 @@
+
+.status__text{
+    font-size: 18px;
+    color: #644e4e;
+    cursor: pointer;
+}
+.status__input{
+    border: 2px solid #958c8c;;
+    font-size: 18px;
+    color: #644e4e;
+}
+.status__input:focus{
+    outline: none;
+    border-radius: 40px;
+}

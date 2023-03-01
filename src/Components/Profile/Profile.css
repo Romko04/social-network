@@ -1,9 +1,8 @@
 .profile {
     position: relative;
     grid-area: c;
-    background-color: #F8F8F8;
     border-radius: 40px;
-    padding: 20% 40px 40px;
+    padding: 20% 0 0;
     font-size: 20px;
     color: black;
 }
@@ -29,13 +28,13 @@
 }
 
 label {
-    /* right: 9%; */
+    right: 9%;
     width: 35px;
-    left: 13%;
+    left: 17%;
     z-index: 2;
     /* height: 19px; */
     position: absolute;
-    bottom: 16%;
+    bottom: 39%;
     cursor: pointer;
 }
 
@@ -55,11 +54,23 @@ label {
 }
 
 .profile__description {
+    padding-bottom: 3em;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
+    border-radius: 40px;
+    box-shadow: 5px 5px 10px #f8f8f8;
+    box-shadow: 0 10px 5px -2px #f8f8f8, 0 0 0 0 #f8f8f8
+}
+
+.profile__desctiption-data {
+    margin-left: 3em;
+    display: flex;
+    flex-direction: column;
+    max-width: 210px;
+    align-items: center;
 }
 
 .profile__description img {
@@ -68,10 +79,26 @@ label {
     max-width: 200px;
 }
 
-.profile__data-items {
-    margin: 100px 0;
-}
-
 .contacts {
     padding-left: 20px;
+}
+
+.profile__user-name {
+    font-size: 30px;
+    font-weight: 800;
+    color: #4d3c3c;
+    line-height: 0;
+}
+
+.profile__content {
+    border-radius: 40px;
+    display: flex;
+    background-color: #F8F8F8;
+}
+
+.profile__data-items {
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 20px;
 }
