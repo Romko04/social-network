@@ -1,29 +1,30 @@
+import './ProfileData.css'
 export const ProfileData = (props)=>{
     let {setEdit, profileId, router} = props
     return (
         <div className="profile__data-items">
-            {!router.params.userId&&<button onClick={()=> setEdit(true)}>Edit</button>}
+            {!router.params.userId&&<button className='profile__data-btn' onClick={()=> setEdit(true)}>Edit</button>}
             <div className="profile__data-item">
-                <span>aboutMe:</span>
-                <span>{profileId.aboutMe}</span>
+                <span className="profile__data-item-title">AboutMe:</span>
+                <span className="profile__data-item-value">{profileId.aboutMe}</span>
             </div>
             <div className="profile__data-item">
-                <span>contacts:</span>
+                <span className="profile__data-item-title">contacts:</span>
                 <div className="contacts">
                     {Object.keys(profileId.contacts).map(k => <Contact key={k} contactTitle={k} contactValue={profileId.contacts[k]}/>)}
                 </div>
             </div>
             <div className="profile__data-item">
-                <span>fullName: </span>
-                <span>{profileId.fullName}</span>
+                <span className="profile__data-item-title">FullName: </span>
+                <span className="profile__data-item-value">{profileId.fullName}</span>
             </div>
             <div className="profile__data-item">
-                <span>lookingForAJob: </span>
-                <span>{profileId.lookingForAJob}</span>
+                <span className="profile__data-item-title">LookingForAJob: </span>
+                <span className="profile__data-item-value">{profileId.lookingForAJob}</span>
             </div>
             <div className="profile__data-item">
-                <span>lookingForAJobDescription: </span>
-                <span>{profileId.lookingForAJobDescription}</span>
+                <span className="profile__data-item-title">JobDescription: </span>
+                <span className="profile__data-item-value">{profileId.lookingForAJobDescription}</span>
             </div>
 
         </div>
@@ -32,7 +33,7 @@ export const ProfileData = (props)=>{
 const Contact = ({contactTitle, contactValue,}) => {
 return (
     <div>
-        {contactTitle}: {contactValue|| 'haha'}
+        <span className='profile__data-item-title profile--data'>{contactTitle}</span>: <span className='profile__data-item-value profile--data'>{contactValue|| 'haha'}</span>
     </div>
 )
 }

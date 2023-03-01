@@ -1,0 +1,41 @@
+.profile__data-item-title{
+    font-size: 30px;
+    font-weight: 600;
+    color: #4d3c3c;
+}
+.profile--data{
+    font-weight: 400;
+}
+.profile__data-item-value{
+    font-size: 18px;
+    color: #644e4e;
+    margin-left: 10px;
+}
+.profile__data-btn{
+    margin-left: 80%;
+    border: none;
+    background: #F8F8F8;
+    padding: 0.7em 2em;
+    border-radius: 40px;
+    font-size: 17px;
+    color: #4d3c3c;
+    cursor: pointer;
+}
+
+.profile__data-form__input:focus{
+    outline: none;
+}
+.profile__data-form__input{
+    margin-left: 2em;
+    padding: 4px;
+    border: 3px solid #F8F8F8;
+    font-size: 18px;
+    color: #644e4e;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.profile__data-btn:hover{
+    background: #dcdada;
+    color: #fff;
+    cursor: text ;
+}
