@@ -3,10 +3,64 @@
 }
 .user{
     width: 150px;
-    margin-left: 20px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #fff;
+
 }
 .user__content{
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
+.user__name{
+    font-size: 15px;
+    font-weight: 600;
+    color: #4d3c3c;
+}
+.pagination__button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+  .pagination__button:hover {
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #333;
+  }
+  
+  .pagination__button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  
+  
+  .user__btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+  .user__btn:hover {
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #333;
+  }
+  
+  .user__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  
+  

@@ -1,12 +1,15 @@
 .content__message{
-    color: white;
     font-size: 30px;
+    font-weight: 600;
+    color: #4d3c3c;
 }
 .posts__item{
+    background: #f8f8f8;
     margin: 50px 20px;
-    background-color: rgb(36, 36, 37);
+    /* background-color: rgb(36, 36, 37); */
     padding: 20px;
-    width: 300px;
+    width: 80%;
+    border-radius: 40px;
 }
 .item__content{
     display: flex;
@@ -14,10 +17,6 @@
     align-items: center;
 }
 .content__img{
-    width: 40px;
-    border-radius: 35%;
-}
-.content__likes {
-    margin-left: 200px;
-    color: #fff;
+    width: 60px;
+    border-radius: 50%;
 }

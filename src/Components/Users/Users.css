@@ -1,7 +1,14 @@
+.users{
+    background-color: #f8f8f8;
+    border-radius: 40px;
+    padding: 20px;
+}
 .users__item{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .pagination__item{
     font-size: 20px;

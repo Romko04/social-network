@@ -9,7 +9,8 @@ const HeaderContainer = (props)=> {
 const mapStateToProps = (state) => {
     return {
         auth: state.auth,
-        photoUser: state.profilePage.profileId
+        profile: state.profilePage.profileId
     }
 }
+
 export default connect(mapStateToProps,{})(HeaderContainer)

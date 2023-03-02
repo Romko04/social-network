@@ -1,4 +1,4 @@
-.messages {
+/* .messages {
     display: flex;
     background-color: aquamarine;
 }
@@ -34,4 +34,91 @@
     margin-top: auto;
     display: flex;
     
-}
+} */
+.messages {
+    display: flex;
+    margin: 30px;
+  }
+  
+  .messages__dialogs {
+    width: 30%;
+    padding-right: 10px;
+    border-right: 1px solid #ccc;
+  }
+  
+  .dialog__person {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .dialog__person:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .dialog__person-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .dialog__person-name {
+    font-weight: bold;
+  }
+  
+  .message__dialog {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-left: 10px;
+  }
+  
+  .dialog__messages {
+    flex-grow: 1;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+  }
+  
+  .dialog__message {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+  
+  .dialog__message:last-child {
+    margin-bottom: 0;
+  }
+  
+  .submit__messages {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .dialog__messages-textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .dialog__messages-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dialog__messages-btn:hover {
+    background-color: #0069d9;
+  }

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import './pagination.css'
 const Pagination = (props) => {
     let portionSize = 10 // по стільки сторінок має бути в
     const totalPages = Math.ceil(props.totalCount / props.pageSize) //скільки буде сторінок 20 4 порції
@@ -18,9 +19,9 @@ const Pagination = (props) => {
     })
     return (
     <div className="pagination">
-        {portionNumber > 1 ? <button onClick={() => setPortionNumber(portionNumber - 1)}>Left</button> : null}
+        {portionNumber > 1 ? <button className="pagination__button" onClick={() => setPortionNumber(portionNumber - 1)}>Left</button> : null}
         {pagination}
-        {totalPortion > portionNumber ? <button onClick={() => setPortionNumber(portionNumber + 1)}>Right</button> : null}
+        {totalPortion > portionNumber ? <button className="pagination__button" onClick={() => setPortionNumber(portionNumber + 1)}>Right</button> : null}
     </div>
     )
 }

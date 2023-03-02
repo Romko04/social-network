@@ -1,5 +1,5 @@
 
-.dialog__active {
+/* .dialog__active {
     color: gold;
     font-size: 20px;
 }
@@ -11,4 +11,27 @@
 .dialog__img{
     height: 60px;
     border-radius: 50%;
-}
+} */
+.dialogs {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .dialog__img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .messages__dialogs-link {
+    color: #555;
+    text-decoration: none;
+  }
+  
+  .dialog__active {
+    color: #000;
+    font-weight: bold;
+  }

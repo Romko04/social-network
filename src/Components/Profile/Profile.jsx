@@ -38,11 +38,19 @@ const Profile = (props) => {
             </div>
             <div className="profile__content">
                 {edit ? <ProfileDataForm saveProfile={props.saveProfile} setEdit={setEdit} profileId={props.profileId} /> : <ProfileData router={props.router} profileId={props.profileId} setEdit={setEdit} />}
-                <div>
-                    <textarea className='content__post' onChange={changeNewPost} value={props.newPostText} ref={textPost}></textarea>
-                    <div className=""><button className='content__post-btn' onClick={addPost}>Add Post</button></div>
-                    <Posts data={props.postsList} />
-                </div>
+                     <div className='profile__posts'>
+                        {!props.router.params.userId
+                            ?<div>
+                                <div className='profile__posts-add'>
+                                <input className='profile__post-input' onChange={changeNewPost} value={props.newPostText} ref={textPost}></input>
+                                <button className='profile__post-btn' onClick={addPost}>Add Post</button>
+                            </div>
+                            <Posts img={props.profileId.photos.small} data={props.postsList} />
+                            </div>
+                            : <h3 className='posts__none'> No Posts</h3>
+                        }
+                        
+                    </div>
             </div>
         </div>
     )

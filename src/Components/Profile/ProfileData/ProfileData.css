@@ -32,10 +32,10 @@
     font-size: 18px;
     color: #644e4e;
     margin-left: 10px;
-    cursor: pointer;
+    cursor: text;
 }
 .profile__data-btn:hover{
     background: #dcdada;
     color: #fff;
-    cursor: text ;
+    cursor: pointer ;
 }
