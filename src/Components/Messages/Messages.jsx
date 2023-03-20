@@ -1,29 +1,28 @@
-import React from 'react'
-import Dialog from './Dialogs/Dialogs'
+import React, { useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import Message from './Message/Message'
+import MessageForm from './Messages-Form'
 import './Messages.css'
-
-const Messages = (props) => {
-    let textMessage = React.createRef()
-    const changeMessage = () => {
-        props.onChangeMessage(textMessage.current.value)
+let wsChannel = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
+const Messages = ({setMessages}) => {
+    const chatRef = useRef(null);
+    if (chatRef) {
+        debugger
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-    const addMessage = () => {props.onAddMessage()}
-    let people = props.dialogsPage.usersDialogs.map(p => <Dialog key={p.id} id={p.id} name={p.name} url={p.urlImg} />)
-    let dialogPeople = props.dialogsPage.dailog.map(m => <Message key={m.id} message={m.message} />)
+    const messages = useSelector((state) => state.dialogsPage.messages)
+    useEffect(()=>{
+        wsChannel.addEventListener('message', (e)=>{
+            setMessages(JSON.parse(e.data))
+        })
+    },[setMessages])
     return (
         <div className='messages'>
-            <div className='messages__dialogs'>
-                {people}
-            </div>
-            <div className='message__dialog'>
+            <div className='message__dialog' ref={chatRef}>
                 <div className="dialog__messages">
-                    {dialogPeople}
+                    {messages.length > 0 && messages.map(m => <Message key={m.id} {...m} />)}
                 </div>
-                <div className="submit__messages">
-                    <textarea value={props.dialogsPage.newMessage} ref={textMessage} onChange={changeMessage} className='dialog__messages-textarea' name="" id="" cols="10" rows="4"></textarea>
-                    <button onClick={addMessage} className="dialog__messages-btn">Відправити</button>
-                </div>
+                <MessageForm wsChannel={wsChannel}/>
             </div>
         </div>
     )

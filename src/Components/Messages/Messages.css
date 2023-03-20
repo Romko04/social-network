@@ -1,51 +1,7 @@
-/* .messages {
-    display: flex;
-    background-color: aquamarine;
-}
-.messages__dialogs{
-    display: flex;
-    gap: 15px;
-    flex-direction: column;
-    padding: 20px;
-    width: 10%;
-}
-.messages__dialogs-link {
-    font-size: 20px;
-    text-decoration: none;
-}
-.message__dialog {
-    width: 90%;
-    font-size: 20px;
-    padding: 30px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    max-height: 100vh;
-}
-.dialog__messages-textarea{
-    width: 90%;
-    height: 45px;
-}
-.dialog__messages-btn{
-    width: 100px;
-    height: 50px;
-}
-.submit__messages{
-    margin-top: auto;
-    display: flex;
-    
-} */
 .messages {
     display: flex;
     margin: 30px;
   }
-  
-  .messages__dialogs {
-    width: 30%;
-    padding-right: 10px;
-    border-right: 1px solid #ccc;
-  }
-  
   .dialog__person {
     display: flex;
     align-items: center;
@@ -73,6 +29,7 @@
     display: flex;
     flex-direction: column;
     width: 70%;
+    height: 60vh;
     padding-left: 10px;
   }
   
