@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 
-const MessageForm = ({wsChannel}) => (
+const MessageForm = ({wsChannel}) => {
+  let [readyStatus, setReadyStatus] = useState('pending')
+  useEffect(()=>{
+    const openHandler = ()=>{setReadyStatus('ready')}
+    wsChannel?.addEventListener('open',openHandler)
+    return ()=>{
+      wsChannel?.removeEventListener('open',openHandler)
+    }
+  },[wsChannel])
+  return (
   <>
     <Formik
       initialValues={{ message: ''}}
@@ -22,14 +31,16 @@ const MessageForm = ({wsChannel}) => (
             name="message"
             onChange={handleChange}
             value={values.message}
+            validate="true"
           />
-          <button type="submit" className='dialog__messages-btn'>
+          <button type="submit" disabled={readyStatus !== 'ready' || values.message === ''} className='dialog__messages-btn' >
             Submit
           </button>
         </form>
       )}
     </Formik>
   </>
-);
+  )
+};
 
 export default MessageForm;

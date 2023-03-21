@@ -75,7 +75,15 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+  .dialog__messages-btn:disabled{
+    background-color: #ebecec;
+    color: #060606;
+  }
   
   .dialog__messages-btn:hover {
     background-color: #0069d9;
+  }
+  .dialog__messages-btn:disabled:hover {
+    background-color: #ebecec;
+    cursor:unset;
   }
