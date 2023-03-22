@@ -1,3 +1,5 @@
+import { chatAPI } from "../../api/chat-api"
+
 const set_messages = 'SET_MESSAGES'
 export const setMessages = (messages) => {
     return {
@@ -20,4 +22,26 @@ const messageRegucer = (state = initialState, action) => {
             return state
     }
 }
+let _newMessagesHandlerCreator
+const newMessagesHandlerCreator =(dispatch)=> {
+    if (!_newMessagesHandlerCreator) {
+        _newMessagesHandlerCreator = (messages) => {
+            dispatch(setMessages(messages))
+        }
+    }
+    return _newMessagesHandlerCreator
+}
+export const startMessagesListening = () => async (dispatch) => {
+    chatAPI.start()
+    chatAPI.subscribe(newMessagesHandlerCreator(dispatch))
+}
+export const stopMessagesListening = () => async (dispatch) => {
+    chatAPI.stop()
+    chatAPI.unsubcribe(newMessagesHandlerCreator(dispatch))
+}
+export const sendMessage = (message) => async () => {
+    chatAPI.sendMessage(message)
+}
+
+
 export default messageRegucer

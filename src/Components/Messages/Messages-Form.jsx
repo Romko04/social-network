@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { sendMessage } from '../Redux/message-reducer';
 
-const MessageForm = ({wsChannel}) => {
-  let [readyStatus, setReadyStatus] = useState('pending')
-  useEffect(()=>{
-    const openHandler = ()=>{setReadyStatus('ready')}
-    wsChannel?.addEventListener('open',openHandler)
-    return ()=>{
-      wsChannel?.removeEventListener('open',openHandler)
-    }
-  },[wsChannel])
+const MessageForm = () => {
+  const dispatch = useDispatch()
+  // let [readyStatus, setReadyStatus] = useState('pending')
+  // useEffect(()=>{
+  //   const openHandler = ()=>{setReadyStatus('ready')}
+  //   wsChannel?.addEventListener('open',openHandler)
+  //   return ()=>{
+  //     wsChannel?.removeEventListener('open',openHandler)
+  //   }
+  // },[wsChannel])
   return (
   <>
     <Formik
       initialValues={{ message: ''}}
       onSubmit={(values) => {
-        wsChannel.send(values.message)
+        dispatch(sendMessage(values.message))
         values.message = ''
       }}
     >
@@ -33,7 +36,7 @@ const MessageForm = ({wsChannel}) => {
             value={values.message}
             validate="true"
           />
-          <button type="submit" disabled={readyStatus !== 'ready' || values.message === ''} className='dialog__messages-btn' >
+          <button type="submit" disabled={false} className='dialog__messages-btn' >
             Submit
           </button>
         </form>
