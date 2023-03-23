@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendMessage } from '../Redux/message-reducer';
 
 const MessageForm = () => {
@@ -13,6 +13,7 @@ const MessageForm = () => {
   //     wsChannel?.removeEventListener('open',openHandler)
   //   }
   // },[wsChannel])
+  let status = useSelector((state)=>state.dialogsPage.status)
   return (
   <>
     <Formik
@@ -36,7 +37,7 @@ const MessageForm = () => {
             value={values.message}
             validate="true"
           />
-          <button type="submit" disabled={false} className='dialog__messages-btn' >
+          <button type="submit" disabled={status !== 'ready'} className='dialog__messages-btn' >
             Submit
           </button>
         </form>
