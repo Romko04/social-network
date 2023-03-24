@@ -5,14 +5,6 @@ import { sendMessage } from '../Redux/message-reducer';
 
 const MessageForm = () => {
   const dispatch = useDispatch()
-  // let [readyStatus, setReadyStatus] = useState('pending')
-  // useEffect(()=>{
-  //   const openHandler = ()=>{setReadyStatus('ready')}
-  //   wsChannel?.addEventListener('open',openHandler)
-  //   return ()=>{
-  //     wsChannel?.removeEventListener('open',openHandler)
-  //   }
-  // },[wsChannel])
   let status = useSelector((state)=>state.dialogsPage.status)
   return (
   <>
@@ -37,7 +29,7 @@ const MessageForm = () => {
             value={values.message}
             validate="true"
           />
-          <button type="submit" disabled={status !== 'ready'} className='dialog__messages-btn' >
+          <button type="submit" disabled={status !== 'ready' || values.message===''} className='dialog__messages-btn' >
             Submit
           </button>
         </form>

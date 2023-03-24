@@ -2,6 +2,7 @@ import { chatAPI } from "../../api/chat-api"
 
 const set_messages = 'SET_MESSAGES'
 const set_status = 'SET_STATUS'
+const delete_messages = 'DELETE_MESSAGES'
 export const setMessages = (messages) => {
     return {
         type: set_messages,
@@ -14,6 +15,11 @@ export const setStatus = (status) => {
         status
     }
 } 
+export const deleteMessages = () => {
+    return {
+        type: delete_messages,
+    }
+} 
 let initialState = {
     messages: [],
     status: 'pending'
@@ -24,6 +30,12 @@ const messageRegucer = (state = initialState, action) => {
             return{
                 ...state,
                 messages: [...state.messages, ...action.messages]
+            }
+        }
+        case delete_messages:{
+            return{
+                ...state,
+                messages: []
             }
         }
         case set_status:{
@@ -60,6 +72,7 @@ export const startMessagesListening = () => async (dispatch) => {
     chatAPI.subscribe('status-changed', statusHandlerCreator(dispatch))
 }
 export const stopMessagesListening = () => async (dispatch) => {
+    dispatch(deleteMessages())
     chatAPI.unsubcribe('messages-received',newMessagesHandlerCreator(dispatch))
     chatAPI.unsubcribe('status-changed',statusHandlerCreator(dispatch))
     chatAPI.stop()

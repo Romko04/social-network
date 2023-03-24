@@ -11,18 +11,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { getNewPostText, getPostsList, getProfileId, getStatus } from '../Redux/profile-selectors';
 const ProfileContainer = (props) => {
+    let {statusUserThunk,profileUserThunk} = props
     useEffect(()=>{
         let userId = props.router.params.userId
         if (!userId) userId = 27942
-            props.profileUserThunk(userId)
-            props.statusUserThunk(userId)
-    },[])
-    useEffect(()=>{
-        let userId = props.router.params.userId
-        if (!userId) userId = 27942
-            props.profileUserThunk(userId)
-            props.statusUserThunk(userId)
-    },[props.router.params.userId])
+            profileUserThunk(userId)
+            statusUserThunk(userId)
+    },[props.router.params.userId,profileUserThunk,statusUserThunk ])
     return (
         <Profile {...props} />
     )

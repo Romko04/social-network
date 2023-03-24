@@ -4,7 +4,6 @@ import {ReactComponent as Messages} from '../../icons/messages.svg'
 import {ReactComponent as Users} from '../../icons/users.svg'
 import {ReactComponent as Logout} from '../../icons/logout.svg'
 import { NavLink } from 'react-router-dom'
-import FriendsOnline from './FriendsOnline/FriendsOnline'
 import './Nav.css'
 const Nav = (props) => {
     return (

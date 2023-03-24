@@ -86,7 +86,7 @@ const usersRegucer = (state = initialState, action) => {
                 ...state,
                 followingProgres: action.isFetch
                 ? [...state.followingProgres, action.id]
-                : state.followingProgres.filter((id => id != action.id))
+                : state.followingProgres.filter((id => id !== action.id))
             }
         }
         default:
@@ -120,14 +120,14 @@ const followUnfollowFlow = async (dispatch, id, methodApi, action) => {
     dispatch(followingInProgress(true, id))
     const data = await methodApi(id)
     dispatch(followingInProgress(false, id))
-    if (data.resultCode == 0) {
+    if (data.resultCode === 0) {
         dispatch(action(id))
     }
 }
 const userFolowwing = (state, action, followed) => ({
     ...state,
     users: state.users.map(u => {
-        if (u.id == action.id) return {...u, followed}
+        if (u.id === action.id) return {...u, followed}
         return u
     })
 })

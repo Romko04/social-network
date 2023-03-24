@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Pagination from "./Pagination/Pagination"
 import User from "./User/user"
 import './Users.css'

@@ -8,9 +8,10 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
 import { getCurrentPage, getFollowinProgress, getPageSize, getTotalCount, getUsers, quiareIsFetching } from '../Redux/users-selectors'
 const UsersApiContainer = (props) => {
+    const {getUsersThunk, pageSize} = props
     useEffect(()=>{
-        props.getUsersThunk(1, props.pageSize)
-    },[])
+        getUsersThunk(1, pageSize)
+    },[getUsersThunk,pageSize])
     const onChangePage = (page) => {
         props.getUsersThunk(page, props.pageSize)
     }

@@ -1,0 +1,27 @@
+.message__top{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.message__img{
+    cursor: pointer;
+    width: 60px;
+    border-radius: 50%;
+}
+.message__user-name{
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    color: #4d3c3c;
+}
+.message__user-name:hover{
+    color: #8e6e6e;
+}
+
+
+.message__value{
+    margin: 1.2rem;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4d3c3c;
+}
