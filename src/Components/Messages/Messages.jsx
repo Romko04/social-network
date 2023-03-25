@@ -5,12 +5,12 @@ import Message from './Message/Message'
 import MessageForm from './Messages-Form'
 import MessagesLoader from './Messages-loader'
 import './Messages.css'
-const Messages = () => {    
-    const messages = useSelector((state) => state.dialogsPage.messages)
-    const messagesAnchorRef = useRef()
+const Messages = () => {
+    const {messages, status} = useSelector((state) => state.dialogsPage)
+    const messagesEndRef = useRef(null);
     const dispatch = useDispatch()
     useEffect(()=>{
-        messagesAnchorRef.current?.scrollIntoView(true)
+        messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     },[messages])
     useEffect(() => {
         dispatch(startMessagesListening())
@@ -20,10 +20,12 @@ const Messages = () => {
     }, [dispatch])
     return (
         <div className='messages'>
-            <div className='message__dialog'>
+            <div ref={messagesEndRef} className='message__dialog'>
                 <div className="dialog__messages">
-                    {messages.length > 0 && messages.map((m, index) => <MessagesLoader key={index} {...m} />)}
-                    <div ref={messagesAnchorRef}></div>
+                    {status === 'ready'
+                    ?messages.map((m, index) => <Message key={index} {...m} />)
+                    :[...new Array(10)].map((_, i) => <MessagesLoader key={i} />)
+                }
                 </div>
                 <MessageForm/>
             </div>

@@ -3,7 +3,6 @@ import { onFollowUser,unFollowUser,followingInProgress, getUsersThunk,followUser
 import Users from './Users'
 import React, { useEffect } from "react"
 import './Users.css'
-import Preloader from '../common/Preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
 import { getCurrentPage, getFollowinProgress, getPageSize, getTotalCount, getUsers, quiareIsFetching } from '../Redux/users-selectors'
@@ -17,7 +16,7 @@ const UsersApiContainer = (props) => {
     }
     return (
         <div className='users'>
-             {props.isFetching?<Preloader />:<Users onChangePage={onChangePage} {...props} />}
+             {<Users onChangePage={onChangePage} {...props} />}
         </div>
     )
 }

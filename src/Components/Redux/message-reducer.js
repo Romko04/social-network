@@ -35,7 +35,8 @@ const messageRegucer = (state = initialState, action) => {
         case delete_messages:{
             return{
                 ...state,
-                messages: []
+                messages: [],
+                status: 'pending'
             }
         }
         case set_status:{

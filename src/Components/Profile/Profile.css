@@ -19,14 +19,13 @@
 .profile__user-photo {
     border-radius: 50%;
     border: 0.3rem solid #fff;
-    cursor: pointer;
 }
 
 .profile__upload-photo {
     display: none;
 }
 
-label {
+.upload__photo {
     right: 9%;
     width: 35px;
     left: 17%;
@@ -69,8 +68,8 @@ label {
     margin-left: 3em;
     display: flex;
     flex-direction: column;
-    max-width: 210px;
     align-items: center;
+    margin-right: auto;
 }
 
 .profile__description img {

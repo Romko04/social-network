@@ -8,7 +8,10 @@ const ProfileStatus = (props) => {
         props.updateStatusThunk(stat)
     }
     const activeEditMode = () => {
-        setEdit(true)
+        debugger
+        if (!props.userId) {
+            setEdit(true)
+        }
     }
     const changeStatus = (e) => {
         setStatus(e.currentTarget.value)
@@ -20,8 +23,8 @@ const ProfileStatus = (props) => {
         <div className="status">
             {/* {props.userId&& <span className="status__text">{props.status || 'Немає статусу'}</span>} */}
             {editMode && !props.userId
-                ? <input onChange={changeStatus} novalidate autoFocus={true} onBlur={deactiveEditMode} type="text" className="status__input" value={stat} />
-                : <span onDoubleClick={activeEditMode} className="status__text">{props.status || 'Немає статусу'}</span>
+                ? <input onChange={changeStatus}  autoFocus={true} onBlur={deactiveEditMode} type="text" className="status__input" value={stat} />
+                : <span title='Поміняти статус' onDoubleClick={activeEditMode} className="status__text">{props.status || 'Немає статусу'}</span>
             }
         </div>
     )

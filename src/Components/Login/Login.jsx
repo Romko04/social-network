@@ -35,8 +35,8 @@ const LoginForm = (props) => {
     }
   })
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="Login">Login</label>
+    <form className='login__form' onSubmit={formik.handleSubmit}>
+      <h3 >Login</h3>
       <div>
         <input
           id="email"
@@ -51,6 +51,7 @@ const LoginForm = (props) => {
       </div>
       <div>
         <input
+          className='login__form'
           id="password"
           name="password"
           type="password"
@@ -61,8 +62,9 @@ const LoginForm = (props) => {
         />
         {formik.errors.password ? <div>{formik.errors.password}</div> : null}
       </div>
-      <div>
+      <div className='login__radio'>
         <input
+          className='login__radio-input'
           id="rememberMe"
           name="rememberMe"
           type="radio"
@@ -70,11 +72,12 @@ const LoginForm = (props) => {
           value={true}
           validate={validate}
         />
-        <label>rememberMe</label>
+        <label className='login__label'>rememberMe</label>
         {props.captcha && <div><img src={props.captcha.url} alt="" /></div>}
       </div>
       {props.captcha && <div>
         <input
+            className='captcha'
             id="captcha"
             name="captcha"
             type="text"
@@ -82,8 +85,8 @@ const LoginForm = (props) => {
             value={formik.values.captcha}
           />
       </div>}
-      {formik.errors.apiError ? <div>{formik.errors.apiError}</div> : null}
-      <button type="submit">Submit</button>
+      {formik.errors.apiError ? <div className='error'>{formik.errors.apiError}</div> : null}
+      <button className='form__btn' type="submit">Submit</button>
     </form>
   )
 
@@ -92,7 +95,6 @@ const Login = (props) => {
   if (props.isAuth) return <Navigate to='/Profile' />
   return (
     <div className='login'>
-      <h1>Anywhere in your app!</h1>
       <LoginForm {...props} />
     </div>
   );

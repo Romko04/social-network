@@ -33,7 +33,7 @@ export const ProfileData = (props)=>{
 const Contact = ({contactTitle, contactValue,}) => {
 return (
     <div>
-        <span className='profile__data-item-title profile--data'>{contactTitle}</span>: <span className='profile__data-item-value profile--data'>{contactValue|| 'haha'}</span>
+        <span className='profile__data-item-title profile--data'>{contactTitle}</span>: <span className='profile__data-item-value profile--data'>{contactValue|| 'Немає даних'}</span>
     </div>
 )
 }

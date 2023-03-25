@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 
 import './App.css';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import { initalApp } from './Components/Redux/app-reducer';
 import Preloader from './Components/common/Preloader';
 import NavContainer from './Components/Nav/Nav-Container';
-const Users = lazy(() => import('./Components/Users/Users-Container'));
-const Messages = lazy(() => import('./Components/Messages/Messages-Container'));
+import UsersContainer from './Components/Users/Users-Container';
+import MessagesContainer from './Components/Messages/Messages-Container';
 class App extends React.Component {
   componentDidMount() {
     this.props.initalApp ()
@@ -26,12 +26,8 @@ class App extends React.Component {
             <Routes>
               <Route path="/" element={<Navigate to="/profile" />} />
               <Route path='/Profile/:userId?' element={<ProfileContainer />} />
-              <Route path='/Messages/*'  element={<Suspense fallback={<div>Loading...</div>}>
-                                              <Messages />
-                                            </Suspense>} />
-              <Route path='/Users'  element={<Suspense fallback={<div>Loading...</div>}>
-                                              <Users />
-                                            </Suspense>} />
+              <Route path='/Messages/*'  element={<MessagesContainer/>} />
+              <Route path='/Users'  element={<UsersContainer/>} />
               <Route path='/login' element={<Login/>} />
             </Routes>
           </div>

@@ -71,7 +71,6 @@ export const logoutThunk = () => {
     return async (dispatch) => {
         const data = await logoutAuth()
         if (data.resultCode === 0) {
-            debugger
             dispatch(setUserData(null, null, null, false))
         }
     }
