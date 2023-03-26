@@ -35,6 +35,9 @@
     bottom: 39%;
     cursor: pointer;
 }
+.upload__photo:hover{
+    scale: 1.1;
+}
 
 /* .profile__upload-photo::after {
     display: inline-block;
