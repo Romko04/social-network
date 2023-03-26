@@ -36,9 +36,9 @@ const LoginForm = (props) => {
   })
   return (
     <form className='login__form' onSubmit={formik.handleSubmit}>
-      <h3 >Login</h3>
-      <div>
-        <input
+      <h3 className='login__title'>Login</h3>
+      <input
+          className='login--input '
           id="email"
           name="email"
           type="email"
@@ -47,11 +47,9 @@ const LoginForm = (props) => {
           placeholder={'email'}
           validate={validate}
         />
-        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-      </div>
-      <div>
+        {formik.errors.email ? <div className='validate'>{formik.errors.email}</div> : null}
         <input
-          className='login__form'
+          className='login--input'
           id="password"
           name="password"
           type="password"
@@ -60,24 +58,24 @@ const LoginForm = (props) => {
           placeholder={'password'}
           validate={validate}
         />
-        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
-      </div>
-      <div className='login__radio'>
+        {formik.errors.password ? <div className='validate'>{formik.errors.password}</div> : null}
+      <div className="login__check">
         <input
-          className='login__radio-input'
+          className='login__check-input'
           id="rememberMe"
           name="rememberMe"
-          type="radio"
+          type="checkBox"
           onChange={formik.handleChange}
           value={true}
           validate={validate}
         />
-        <label className='login__label'>rememberMe</label>
-        {props.captcha && <div><img src={props.captcha.url} alt="" /></div>}
+        <label className='login__label'>Remember Me</label>
       </div>
+        {props.captcha && <div><img src={props.captcha.url} alt="" /></div>}
       {props.captcha && <div>
         <input
-            className='captcha'
+            className='captcha login--input'
+            placeholder='Введіть Captch`у'
             id="captcha"
             name="captcha"
             type="text"
@@ -86,7 +84,7 @@ const LoginForm = (props) => {
           />
       </div>}
       {formik.errors.apiError ? <div className='error'>{formik.errors.apiError}</div> : null}
-      <button className='form__btn' type="submit">Submit</button>
+      <button className='login__btn-submit' type="submit">Submit</button>
     </form>
   )
 

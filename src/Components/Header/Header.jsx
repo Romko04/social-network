@@ -27,7 +27,7 @@ const Header = ({auth,profile}) => {
                 <span className="header__login-link">{auth.login}</span>
                 {imageUrl?<img className='header__photo' src={imageUrl} alt="photoUser" />:''}
             </div>
-            :<span className="headel__login-link" >{auth.isAuth?auth.login: 'login' }</span>
+            :<span className="header__login-link" >{auth.isAuth?auth.login: <span className="header__login-link" >Login</span> }</span>
             }
         </header>
     )
