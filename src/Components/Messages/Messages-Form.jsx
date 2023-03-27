@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendMessage } from '../Redux/message-reducer';
+import { sendMessage } from '../Redux/message-reducer.ts';
 
 const MessageForm = () => {
   const dispatch = useDispatch()

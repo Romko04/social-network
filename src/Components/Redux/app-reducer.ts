@@ -1,9 +1,14 @@
-import { authThunk } from "./auth-reducer"
+import { authThunk } from "./auth-reducer.ts"
 
 
 const set_initial_app = 'set_initial_app'
-
-export const setinitialApp = () => {
+export type SetInitialAPP = {
+    type: typeof set_initial_app
+}
+export type InitialStateType = {
+    inital: boolean
+}
+export const setinitialApp = ():SetInitialAPP => {
     return {
         type: set_initial_app,
     }
@@ -13,12 +18,12 @@ export const setinitialApp = () => {
 let initialState = {
     inital: false
 }
-const appReducer = (state = initialState, action) => {
+const appReducer = (state:InitialStateType = initialState, action: any):InitialStateType => {
     switch (action.type) {
         case 'set_initial_app': {
             return {
                 ...state, 
-                inital: true
+                inital: true,
             }
         }
         default:
@@ -28,7 +33,7 @@ const appReducer = (state = initialState, action) => {
 
 
 export const initalApp = () => {
-    return (dispatch) => {
+    return (dispatch: any) => {
         let promise = dispatch(authThunk())
         Promise.all([promise])
             .then(()=> {

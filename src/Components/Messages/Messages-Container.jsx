@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { setMessages } from '../Redux/message-reducer'
+import { setMessages } from '../Redux/message-reducer.ts'
 import Messages from './Messages'
 const mapDispatchToProps = (state) => {
     return {

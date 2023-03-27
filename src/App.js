@@ -6,7 +6,7 @@ import ProfileContainer from './Components/Profile/Profile-Container';
 import HeaderContainer from './Components/Header/Header-Container';
 import Login from './Components/Login/Login';
 import { connect } from 'react-redux';
-import { initalApp } from './Components/Redux/app-reducer';
+import { initalApp } from './Components/Redux/app-reducer.ts';
 import Preloader from './Components/common/Preloader';
 import NavContainer from './Components/Nav/Nav-Container';
 import UsersContainer from './Components/Users/Users-Container';

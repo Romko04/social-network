@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { createActionAddPost, createActionChangePost, setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto, saveProfile } from '../Redux/profile-reducer'
+import { createActionAddPost, createActionChangePost, setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto, saveProfile } from '../Redux/profile-reducer.ts'
 import Profile from './Profile'
 import {
     useLocation,

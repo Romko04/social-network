@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startMessagesListening, stopMessagesListening } from '../Redux/message-reducer'
+import { startMessagesListening, stopMessagesListening } from '../Redux/message-reducer.ts'
 import Message from './Message/Message'
 import MessageForm from './Messages-Form'
 import MessagesLoader from './Messages-loader'

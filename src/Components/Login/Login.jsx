@@ -2,7 +2,7 @@ import React from 'react';
  import { useFormik } from 'formik';
  import './Login.css'
 import { connect } from 'react-redux';
-import { deleteCaptcha, loginThunk } from '../Redux/auth-reducer';
+import { deleteCaptcha, loginThunk } from '../Redux/auth-reducer.ts';
 import { Navigate } from 'react-router-dom';
  const validate = values => {
   const errors = {};
