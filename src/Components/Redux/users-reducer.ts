@@ -1,3 +1,4 @@
+import { photosType } from './profile-reducer';
 import { followApi, getUsers, unFollowApi } from "../../api/api"
 
 const follow_User = 'followUser'
@@ -7,43 +8,89 @@ const set_total_count = 'set_total_count'
 const set_current_page = 'set_current_page'
 const toggle_fetching = 'toggle_fetching'
 const following_in_progress = 'following_in_progress'
-export const onFollowUser = (id) => {
+export type onFollowUserType = {
+    type: typeof follow_User
+    id: number
+}
+export type unFollowUserType = {
+    type: typeof un_Follow_User
+    id: number
+}
+export type UserType = {
+    name: string,
+    id: string
+    photos: photosType,
+    status: string | null
+    followed: boolean
+}
+export type setUsersType = {
+    type: typeof set_users
+    users: UserType[]
+}
+export type setTotalCountType = {
+    type: typeof set_total_count
+    count:number
+}
+export type setCurrentPageType = {
+    type: typeof set_current_page
+    currentPage:number
+}
+export type toggleFetchingType = {
+    type: typeof toggle_fetching
+    isFetch:boolean
+}
+export type followingInProgressType = {
+    type: typeof following_in_progress
+    isFetch:boolean
+    id:number
+}
+export type initialStateType = {
+    users: UserType[]
+    totalCount: number,
+    pageSize: number
+    currentPage:number
+    isFetching:boolean
+    followed: boolean
+    followingProgres: any
+}
+export const onFollowUser = (id:number):onFollowUserType => {
     return {
         type: follow_User,
         id: id
     }
 }
-export const unFollowUser = (id) => {
+
+export const unFollowUser = (id:number):unFollowUserType => {
     return {
         type: un_Follow_User,
         id: id
     }
 } 
-export const setUsers = (users) => {
+export const setUsers = (users:UserType[]):setUsersType => {
     return {
         type: set_users,
         users: users
     }
 }
-export const setTotalCount = (count) => {
+export const setTotalCount = (count:number):setTotalCountType => {
     return {
         type: set_total_count,
-        count: count
+        count
     }
 }
-export const setCurrentPage = (count) => {
+export const setCurrentPage = (count:number):setCurrentPageType => {
     return {
         type: set_current_page,
         currentPage: count
     }
 }
-export const toggleFetching= (isFetch) => {
+export const toggleFetching= (isFetch:boolean):toggleFetchingType => {
     return {
         type: toggle_fetching,
-        isFetch: isFetch
+        isFetch
     }
 }
-export const followingInProgress= (isFetch, id) => {
+export const followingInProgress= (isFetch:boolean, id:number):followingInProgressType => {
     return {
         type: following_in_progress,
         isFetch: isFetch,
@@ -51,7 +98,7 @@ export const followingInProgress= (isFetch, id) => {
     }
 }
 
-let initialState = {
+let initialState:initialStateType = {
     users: [
     ],
     totalCount: 0,
@@ -61,7 +108,7 @@ let initialState = {
     followed: false,
     followingProgres: []
 }
-const usersRegucer = (state = initialState, action) => {
+const usersRegucer = (state = initialState, action: any):initialStateType => {
     switch (action.type) {
         case 'followUser': {
             return userFolowwing(state, action, true)
@@ -86,15 +133,15 @@ const usersRegucer = (state = initialState, action) => {
                 ...state,
                 followingProgres: action.isFetch
                 ? [...state.followingProgres, action.id]
-                : state.followingProgres.filter((id => id !== action.id))
+                : state.followingProgres.filter((id:number) => id !== action.id)
             }
         }
         default:
             return state
     }
 }
-export const getUsersThunk = (page, pageSize) => {
-    return (dispatch) => {
+export const getUsersThunk = (page:number, pageSize:number) => {
+    return (dispatch:any) => {
         dispatch(toggleFetching(true))
         dispatch(setCurrentPage(page))
         getUsers(page, pageSize).then(data => {
@@ -104,19 +151,19 @@ export const getUsersThunk = (page, pageSize) => {
         })
     }
 }
-export const followUserThunk = (id) => {
-    return (dispatch) => {
+export const followUserThunk = (id:number) => {
+    return (dispatch:any) => {
        followUnfollowFlow(dispatch,id,followApi,onFollowUser)
 
     }
 }
-export const unFollowUserThunk = (id) => {
-    return (dispatch) => {
+export const unFollowUserThunk = (id:number) => {
+    return (dispatch:any) => {
         followUnfollowFlow(dispatch,id,unFollowApi,unFollowUser)
     }
 }
 export default usersRegucer
-const followUnfollowFlow = async (dispatch, id, methodApi, action) => {
+const followUnfollowFlow = async (dispatch:any, id:number, methodApi:any, action:any) => {
     dispatch(followingInProgress(true, id))
     const data = await methodApi(id)
     dispatch(followingInProgress(false, id))
@@ -124,9 +171,9 @@ const followUnfollowFlow = async (dispatch, id, methodApi, action) => {
         dispatch(action(id))
     }
 }
-const userFolowwing = (state, action, followed) => ({
+const userFolowwing = (state:any, action:any, followed:boolean) => ({
     ...state,
-    users: state.users.map(u => {
+    users: state.users.map((u:UserType) => {
         if (u.id === action.id) return {...u, followed}
         return u
     })

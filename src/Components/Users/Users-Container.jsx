@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { onFollowUser,unFollowUser,followingInProgress, getUsersThunk,followUserThunk,unFollowUserThunk } from '../Redux/users-reducer'
+import { onFollowUser,unFollowUser,followingInProgress, getUsersThunk,followUserThunk,unFollowUserThunk } from '../Redux/users-reducer.ts'
 import Users from './Users'
 import React, { useEffect } from "react"
 import './Users.css'
