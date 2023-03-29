@@ -1,9 +1,15 @@
 import './ProfileData.css'
-export const ProfileData = (props)=>{
-    let {setEdit, profileId, router} = props
+import React from 'react'
+import { ProfileIdDataType } from 'Components/Redux/profile-reducer'
+type profileDataProps = {
+    setEdit:(boolean)=>void
+    profileId:ProfileIdDataType
+    router: any
+}
+const ProfileData:React.FC<profileDataProps> = ({setEdit, profileId, router}) => {
     return (
         <div className="profile__data-items">
-            {!router.params.userId&&<button className='profile__data-btn' onClick={()=> setEdit(true)}>Edit</button>}
+            {!router?.params.userId && <button className='profile__data-btn' onClick={() => setEdit(true)}>Edit</button>}
             <div className="profile__data-item">
                 <span className="profile__data-item-title">AboutMe:</span>
                 <span className="profile__data-item-value">{profileId.aboutMe}</span>
@@ -11,7 +17,7 @@ export const ProfileData = (props)=>{
             <div className="profile__data-item">
                 <span className="profile__data-item-title">contacts:</span>
                 <div className="contacts">
-                    {Object.keys(profileId.contacts).map(k => <Contact key={k} contactTitle={k} contactValue={profileId.contacts[k]}/>)}
+                    {Object.keys(profileId.contacts).map(k => <Contact key={k} contactTitle={k} contactValue={profileId.contacts[k]} />)}
                 </div>
             </div>
             <div className="profile__data-item">
@@ -30,10 +36,11 @@ export const ProfileData = (props)=>{
         </div>
     )
 }
-const Contact = ({contactTitle, contactValue,}) => {
-return (
-    <div>
-        <span className='profile__data-item-title profile--data'>{contactTitle}</span>: <span className='profile__data-item-value profile--data'>{contactValue|| 'Немає даних'}</span>
-    </div>
-)
+const Contact = ({ contactTitle, contactValue, }) => {
+    return (
+        <div>
+            <span className='profile__data-item-title profile--data'>{contactTitle}</span>: <span className='profile__data-item-value profile--data'>{contactValue || 'Немає даних'}</span>
+        </div>
+    )
 }
+export default ProfileData

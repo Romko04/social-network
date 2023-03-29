@@ -139,13 +139,13 @@ export const profileUserThunk = (id:number) => {
             dispatch(setProfileId(data))
     }
 }
-export const statusUserThunk = (id) => {
+export const statusUserThunk = (id:number) => {
     return async (dispatch:any) => {
         const status = await getStatusProfile(id)
         dispatch(setUserStatus(status))
     }
 }
-export const updateStatusThunk= (status) => {
+export const updateStatusThunk= (status: string) => {
     return async (dispatch:any) => {
         const data = await updateStatusProfile(status)
             if (data.resultCode === 0) {
@@ -162,7 +162,7 @@ export const addPhoto = (file:any) => {
     }
 }
 export const saveProfile = (res:any) => {
-    return async (dispatch, getState) => {
+    return async (dispatch:any, getState:any) => {
         let userId = getState().auth.id
         const data = await safeProfileData(res)
             if (data.resultCode === 0) {

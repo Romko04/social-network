@@ -4,7 +4,7 @@ import Posts from './Posts/Posts'
 import Bacground from '../../img/backphone.jpg'
 import { ReactComponent as Upload } from '../../icons/uploadphoto.svg'
 import './Profile.css'
-import { ProfileData } from './ProfileData/ProfileData'
+import ProfileData from './ProfileData/ProfileData'
 import ProfileDataForm from './ProfileData/ProfileDataForm'
 import ProfileStatus from './ProfileInfo/ProfileStatus'
 

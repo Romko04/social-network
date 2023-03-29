@@ -45,7 +45,7 @@ let initialState:initialStateType = {
     messages: [],
     status: 'pending'
 }
-const messageRegucer = (state = initialState, action) => {
+const messageRegucer = (state = initialState, action:any) => {
     switch (action.type) {
         case set_messages:{
             return{
@@ -88,7 +88,7 @@ const statusHandlerCreator =(dispatch:any)=> {
     }
     return _statusHandlerCreator
 }
-export const startMessagesListening = () => async (dispatch) => {
+export const startMessagesListening = () => async (dispatch:any) => {
     chatAPI.start()
     chatAPI.subscribe('messages-received', newMessagesHandlerCreator(dispatch))
     chatAPI.subscribe('status-changed', statusHandlerCreator(dispatch))

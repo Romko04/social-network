@@ -17,9 +17,9 @@ export type unFollowUserType = {
     id: number
 }
 export type UserType = {
-    name: string,
-    id: string
-    photos: photosType,
+    name: string
+    id: number
+    photos: photosType
     status: string | null
     followed: boolean
 }
@@ -51,7 +51,7 @@ export type initialStateType = {
     currentPage:number
     isFetching:boolean
     followed: boolean
-    followingProgres: any
+    followingProgres: number[]
 }
 export const onFollowUser = (id:number):onFollowUserType => {
     return {
@@ -144,7 +144,7 @@ export const getUsersThunk = (page:number, pageSize:number) => {
     return (dispatch:any) => {
         dispatch(toggleFetching(true))
         dispatch(setCurrentPage(page))
-        getUsers(page, pageSize).then(data => {
+        getUsers(page, pageSize).then((data:any) => {
             dispatch(setTotalCount(data.totalCount))
             dispatch(setUsers(data.items))
             dispatch(toggleFetching(false))

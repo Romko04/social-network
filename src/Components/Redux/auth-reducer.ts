@@ -13,6 +13,10 @@ export type initialStateType = {
 export type setUserTypeData = {
     id:number|null, email:string|null, login:string|null, isAuth:boolean
 }
+export type setUserDataTypeAction = {
+    type: typeof set_user_data
+    data: setUserTypeData
+}
 export type setCaptchaTypeAction = {
     type: typeof set_captcha,
     url: string
