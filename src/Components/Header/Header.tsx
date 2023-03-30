@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { ProfileIdDataType, setUserTypeData } from 'types/types'
 import {ReactComponent as Logo} from '../../icons/logo.svg'
 import './Header.css'
-const Header = ({auth,profile}) => {
-    const [imageUrl, setImageUrl] = useState(undefined);
-    const [id, setId] = useState(undefined);
+export type HeaderPropsType = {auth:setUserTypeData|null,profile:ProfileIdDataType|null}
+const Header:React.FC<HeaderPropsType> = ({auth,profile}) => {
+    const [imageUrl, setImageUrl] = useState<null|string>(null);
+    const [id, setId] = useState<null|number>(null);
     if (!imageUrl && profile && profile.photos && profile.photos.small) {
         setImageUrl(profile.photos.small)
         setId(profile.userId)
@@ -22,12 +24,12 @@ const Header = ({auth,profile}) => {
                     <span className='header__logo-title'>SocialNet</span>
                 </Link>
             </div>
-            {auth.isAuth
+            {auth?.isAuth
             ?<div className='header__nav'>
                 <span className="header__login-link">{auth.login}</span>
                 {imageUrl?<img className='header__photo' src={imageUrl} alt="photoUser" />:''}
             </div>
-            :<span className="header__login-link" >{auth.isAuth?auth.login: <span className="header__login-link" >Login</span> }</span>
+            :<span className="header__login-link" >{auth?.isAuth?auth.login: <span className="header__login-link" >Login</span> }</span>
             }
         </header>
     )

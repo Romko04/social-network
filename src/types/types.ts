@@ -38,3 +38,28 @@ export type contactsType = {
     youtube: string|null
 
 }
+export type setUserTypeData = {
+    id:number|null, email:string|null, login:string|null, isAuth:boolean
+}
+export type postType = {
+    likes: string, message: string, id:number
+}
+export type routerType = {
+    location:{
+        hash:string
+        key:string,
+        pathname:string,
+        search:string,
+        state:null
+    }
+    navigate:()=>void
+    params: {userId:number}
+
+}
+export interface SelectedFile {
+    lastModified: number;
+    name: string;
+    size: number;
+    type: string;
+    webkitRelativePath: string;
+  }

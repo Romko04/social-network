@@ -1,4 +1,4 @@
-import { captchaCode, resultCode } from './../../types/types';
+import { captchaCode, resultCode, setUserTypeData } from './../../types/types';
 import { appStateType } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
 import { authApi, getCaptcha, loginAuth, logoutAuth } from "../../api/api"
@@ -12,9 +12,6 @@ export type initialStateType = {
     login: string | null,
     isAuth: boolean,
     captcha: string | null
-}
-export type setUserTypeData = {
-    id:number|null, email:string|null, login:string|null, isAuth:boolean
 }
 export type setUserDataTypeAction = {
     type: typeof set_user_data

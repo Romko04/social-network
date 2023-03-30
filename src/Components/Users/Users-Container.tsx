@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import {followingInProgress, getUsersThunk,followUserThunk,unFollowUserThunk, UserType, followingInProgressType } from '../Redux/users-reducer'
+import {followingInProgress, getUsersThunk,followUserThunk,unFollowUserThunk, followingInProgressType } from '../Redux/users-reducer'
 import Users from './Users'
 import React, { useEffect } from "react"
 import './Users.css'
@@ -7,6 +7,7 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
 import { getCurrentPage, getFollowinProgress, getPageSize, getTotalCount, getUsers, quiareIsFetching } from '../Redux/users-selectors'
 import { appStateType } from 'Components/Redux/redux-store'
+import { UserType } from 'types/types'
 type mapStateToPropsType = {
     users: UserType[]
     pageSize: number

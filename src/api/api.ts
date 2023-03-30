@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { captchaCode, photosType, ProfileIdDataType, resultCode } from './../types/types';
 import axios from "axios"
 import { UserType } from "types/types"
@@ -18,13 +17,13 @@ type responseType<d={},RC=resultCode|captchaCode> ={
     messages: string[]
     data: d
 }
-type authApi ={
+type authApiType ={
     id:number,email:string,login:string
 }
-type loginAuth ={
+type loginAuthType ={
     userId:number
 }
-type updatePhoto ={
+type updatePhotoType ={
     photos:photosType
 }
 export const getUsers = async (page:number, pageSize:number) => {
@@ -44,7 +43,7 @@ export const userProfileApi = async (id:number) => {
     return res.data
 }
 export const authApi = async () => {
-    const res = await instance.get<responseType<authApi>>(`auth/me/`)
+    const res = await instance.get<responseType<authApiType>>(`auth/me/`)
     return res.data
 }
 export const getStatusProfile = async (id:number) => {
@@ -56,7 +55,7 @@ export const updateStatusProfile = async (status:string) => {
     return res.data
 }
 export const loginAuth = async (email:string,password:string,rememberMe:boolean,captcha:string) => {
-    const res = await instance.post<responseType<loginAuth>>(`/auth/login/`, { email, password, rememberMe, captcha })
+    const res = await instance.post<responseType<loginAuthType>>(`/auth/login/`, { email, password, rememberMe, captcha })
     return res.data
 }
 export const logoutAuth = async () => {
@@ -66,7 +65,7 @@ export const logoutAuth = async () => {
 export const updatePhoto = async (photo:any) => {
     let data = new FormData()
     data.append('image', photo)
-    const res = await instance.put<responseType<updatePhoto>>(`/profile/photo`, data, {
+    const res = await instance.put<responseType<updatePhotoType>>(`/profile/photo`, data, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }

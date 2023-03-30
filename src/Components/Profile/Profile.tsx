@@ -7,17 +7,34 @@ import './Profile.css'
 import ProfileData from './ProfileData/ProfileData'
 import ProfileDataForm from './ProfileData/ProfileDataForm'
 import ProfileStatus from './ProfileInfo/ProfileStatus'
-const Profile = ({profileId,router,status,updateStatusThunk,newPostText,postsList,saveProfile,onChangeNewPost,onAddPost,addPhoto}) => {
+import { postType, ProfileIdDataType, routerType, SelectedFile } from 'types/types'
+type ProfilePropsType = {
+    profileId:ProfileIdDataType|null
+    router: routerType
+    status:string
+    updateStatusThunk:(status:string)=>void
+    newPostText:string
+    postsList:postType[]
+    saveProfile:(data:ProfileIdDataType)=>void
+    createActionChangePost:(text:string)=>void
+    createActionAddPost:()=>void
+    addPhoto:(file:SelectedFile)=>void
+
+}
+const Profile:React.FC<ProfilePropsType> = ({profileId,router,status,updateStatusThunk,newPostText,postsList,saveProfile,createActionChangePost,createActionAddPost,addPhoto}) => {
     let [edit, setEdit] = useState(false)
-    const textPost = React.createRef()
-    const changeNewPost = () => {
-        onChangeNewPost(textPost.current.value)
+    const changeNewPost = (e:any) => {
+        createActionChangePost(e.target.value)
     }
     const addPost = () => {
-        onAddPost()
+        createActionAddPost()
     }
-    const onAddPhoto = (e) => {
-        addPhoto(e.target.files[0])
+    const onAddPhoto:React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        if (event.target && event.target.files && event.target.files.length > 0) {
+            console.log(event.target.files[0]);
+            
+            addPhoto(event.target.files[0]);
+          }
     }
     if (!profileId) {
         return <Preloader />
@@ -41,7 +58,7 @@ const Profile = ({profileId,router,status,updateStatusThunk,newPostText,postsLis
                         {!router.params.userId
                             ?<div>
                                 <div className='profile__posts-add'>
-                                <input className='profile__post-input' onChange={changeNewPost} value={newPostText} ref={textPost}></input>
+                                <input className='profile__post-input' onChange={changeNewPost} value={newPostText}></input>
                                 <button className='profile__post-btn' onClick={addPost}>Add Post</button>
                             </div>
                             <Posts img={profileId.photos.small} data={postsList} />

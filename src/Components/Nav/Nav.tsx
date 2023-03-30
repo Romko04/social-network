@@ -5,7 +5,12 @@ import {ReactComponent as Users} from '../../icons/users.svg'
 import {ReactComponent as Logout} from '../../icons/logout.svg'
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
-const Nav = (props) => {
+import { setUserTypeData } from 'types/types'
+export type navPropsType = {
+    logoutThunk:()=>void,
+    auth: setUserTypeData
+}
+const Nav:React.FC<navPropsType> = ({logoutThunk,auth}) => {
     return (
         <nav className='nav'>
             <NavLink className={({ isActive }) => isActive ? 'active nav__link' : 'nav__link'} to="/Profile">
@@ -17,10 +22,9 @@ const Nav = (props) => {
             <NavLink className={({ isActive }) => isActive ? 'active nav__link' : 'nav__link'} to="/Users">
                 <Users className='profile__icon'/> Users
             </NavLink>
-            {props.auth&&<button className='nav__link logout' onClick={props.logoutThunk}>
+            {auth&&<button className='nav__link logout' onClick={logoutThunk}>
                 <Logout className='profile__icon'/> Logout
             </button>}
-            {/* <FriendsOnline data={props.sideBar.friendsOnline} /> */}
         </nav>
     )
 }

@@ -139,7 +139,6 @@ const usersRegucer = (state = initialState, action: actionsTypes):initialStateTy
     }
 }
 type thunkType = ThunkAction<void,appStateType,unknown,actionsTypes>
-type thunkTypeWithPromise = ThunkAction<Promise<void>,appStateType,unknown,actionsTypes>
 export const getUsersThunk = (page:number, pageSize:number):thunkType => {
     return (dispatch) => {
         dispatch(toggleFetching(true))
