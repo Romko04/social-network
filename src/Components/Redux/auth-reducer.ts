@@ -1,3 +1,4 @@
+import { captchaCode, resultCode } from './../../types/types';
 import { appStateType } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
 import { authApi, getCaptcha, loginAuth, logoutAuth } from "../../api/api"
@@ -73,7 +74,7 @@ export const authThunk = ():thunkType => {
     return async (dispatch) => {
        const data = await authApi()
         let { email, id, login } = data.data
-        if (data.resultCode === 0) {
+        if (data.resultCode === resultCode.succes) {
             dispatch(setUserData(id, email, login, true))
         }
     }
@@ -81,10 +82,10 @@ export const authThunk = ():thunkType => {
 export const loginThunk = (email:string, password:string, rememberMe:boolean, captcha:string, setErrors: Function):thunkType => {
     return async (dispatch) => {
         const data = await loginAuth(email, password, rememberMe, captcha)
-        if (data.resultCode === 0) {
+        if (data.resultCode === captchaCode.succes) {
             dispatch(authThunk())
         } else {
-            if (data.resultCode === 10) {
+            if (data.resultCode === captchaCode.captcha) {
                 dispatch(getCaptchaUrl())
             }
             setErrors({ apiError: `${data.messages[0]}` })
@@ -94,7 +95,7 @@ export const loginThunk = (email:string, password:string, rememberMe:boolean, ca
 export const logoutThunk = ():thunkType => {
     return async (dispatch) => {
         const data = await logoutAuth()
-        if (data.resultCode === 0) {
+        if (data.resultCode === resultCode.succes) {
             dispatch(setUserData(null, null, null, false))
         }
     }

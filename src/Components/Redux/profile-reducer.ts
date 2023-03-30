@@ -1,6 +1,7 @@
 import { appStateType } from './redux-store';
 import { getStatusProfile, userProfileApi, updateStatusProfile, updatePhoto, safeProfileData } from "../../api/api"
 import { ThunkAction } from 'redux-thunk';
+import { photosType, ProfileIdDataType, resultCode } from 'types/types';
 
 const add_post = 'ADDPOST'
 const change_post = 'CHANGEPOST'
@@ -15,30 +16,7 @@ export type actionChangePostType = {
     type: typeof change_post
     message: string
 }
-export type photosType = {
-    large: string|null
-    small: string|null
-}
-export type contactsType = {
-    facebook: string|null
-    github: string|null
-    instagram: string|null
-    mainLink: string|null
-    twitter: string|null
-    vk: string|null
-    website: string|null
-    youtube: string|null
 
-}
-export type ProfileIdDataType = {
-    aboutMe: string
-    contacts: contactsType
-    fullName: string
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    photos: photosType
-    userId: number
-}
 export type actionSetProfileIdType = {
     type: typeof set_profile_id
     data: ProfileIdDataType
@@ -151,7 +129,7 @@ export const statusUserThunk = (id:number) => {
 export const updateStatusThunk= (status: string):thunkType => {
     return async (dispatch) => {
         const data = await updateStatusProfile(status)
-            if (data.resultCode === 0) {
+            if (data.resultCode === resultCode.succes) {
                 dispatch(setUserStatus(status))
             }
     }
@@ -159,7 +137,7 @@ export const updateStatusThunk= (status: string):thunkType => {
 export const addPhoto = (file:any):thunkType => {
     return async (dispatch) => {
         const data = await updatePhoto(file)
-            if (data.resultCode === 0) {
+            if (data.resultCode === resultCode.succes) {
                 dispatch(setPhoto(data.data.photos))
             }
     }
@@ -168,7 +146,7 @@ export const saveProfile = (res:any):thunkType => {
     return async (dispatch, getState) => {
         let userId = getState().auth.id
         const data = await safeProfileData(res)
-            if (data.resultCode === 0 && userId) {
+            if (data.resultCode === resultCode.succes && userId) {
                 dispatch(profileUserThunk(userId))
             }
     }

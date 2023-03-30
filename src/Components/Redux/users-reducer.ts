@@ -1,8 +1,9 @@
-import { appStateType } from './redux-store';
-import { photosType } from './profile-reducer';
+import { resultCode } from './../../types/types';
+import { UserType } from '../../types/types';
 import { followApi, getUsers, unFollowApi } from "../../api/api"
 import { Dispatch } from 'react';
 import { ThunkAction } from 'redux-thunk';
+import { appStateType } from './redux-store';
 
 const follow_User = 'followUser'
 const un_Follow_User = 'unFollowUser'
@@ -18,13 +19,6 @@ export type onFollowUserType = {
 export type unFollowUserType = {
     type: typeof un_Follow_User
     id: number
-}
-export type UserType = {
-    name: string
-    id: number
-    photos: photosType
-    status: string | null
-    followed: boolean
 }
 export type setUsersType = {
     type: typeof set_users
@@ -147,10 +141,10 @@ const usersRegucer = (state = initialState, action: actionsTypes):initialStateTy
 type thunkType = ThunkAction<void,appStateType,unknown,actionsTypes>
 type thunkTypeWithPromise = ThunkAction<Promise<void>,appStateType,unknown,actionsTypes>
 export const getUsersThunk = (page:number, pageSize:number):thunkType => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(toggleFetching(true))
         dispatch(setCurrentPage(page))
-        getUsers(page, pageSize).then((data:any) => {
+        getUsers(page, pageSize).then((data) => {
             dispatch(setTotalCount(data.totalCount))
             dispatch(setUsers(data.items))
             dispatch(toggleFetching(false))
@@ -168,12 +162,14 @@ export const unFollowUserThunk = (id:number):thunkType => {
         followUnfollowFlow(dispatch,id,unFollowApi,unFollowUser)
     }
 }
+type followApiType = typeof followApi
+type unfollowApiType = typeof unFollowApi
 export default usersRegucer
-const followUnfollowFlow = async (dispatch:Dispatch<actionsTypes>, id:number, methodApi:any, action:(id:number)=>onFollowUserType|unFollowUserType) => {
+const followUnfollowFlow = async (dispatch:Dispatch<actionsTypes>, id:number, methodApi:followApiType|unfollowApiType , action:(id:number)=>onFollowUserType|unFollowUserType) => {
     dispatch(followingInProgress(true, id))
     const data = await methodApi(id)
     dispatch(followingInProgress(false, id))
-    if (data.resultCode === 0) {
+    if (data.resultCode === resultCode.succes) {
         dispatch(action(id))
     }
 }

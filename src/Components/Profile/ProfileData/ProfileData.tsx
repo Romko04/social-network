@@ -1,6 +1,6 @@
 import './ProfileData.css'
 import React from 'react'
-import { ProfileIdDataType } from 'Components/Redux/profile-reducer'
+import { ProfileIdDataType } from 'types/types'
 type profileDataProps = {
     setEdit:(boolean)=>void
     profileId:ProfileIdDataType

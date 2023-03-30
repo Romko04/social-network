@@ -1,3 +1,6 @@
+import { Dispatch } from 'react';
+import { appStateType } from './redux-store';
+import { ThunkAction } from 'redux-thunk';
 import { chatAPI } from "../../api/chat-api"
 
 const set_messages = 'SET_MESSAGES'
@@ -20,6 +23,7 @@ export type setStatusActionType = {
 export type deleteMessagesActionType = {
     type: typeof delete_messages,
 }
+type actionsTypes = setMessagesActionType|setStatusActionType|deleteMessagesActionType
 export const setMessages = (messages: message[]):setMessagesActionType => {
     return {
         type: set_messages,
@@ -45,7 +49,7 @@ let initialState:initialStateType = {
     messages: [],
     status: 'pending'
 }
-const messageRegucer = (state = initialState, action:any) => {
+const messageRegucer = (state = initialState, action:actionsTypes) => {
     switch (action.type) {
         case set_messages:{
             return{
@@ -71,7 +75,8 @@ const messageRegucer = (state = initialState, action:any) => {
     }
 }
 let _newMessagesHandlerCreator: null| any = null
-const newMessagesHandlerCreator =(dispatch:any)=> {
+type thunkType = ThunkAction<Promise<void>,appStateType,unknown,actionsTypes>
+const newMessagesHandlerCreator =(dispatch:Dispatch<actionsTypes>)=> {
     if (_newMessagesHandlerCreator === null) {
         _newMessagesHandlerCreator = (messages: message[]) => {
             dispatch(setMessages(messages))
@@ -80,7 +85,7 @@ const newMessagesHandlerCreator =(dispatch:any)=> {
     return _newMessagesHandlerCreator
 }
 let _statusHandlerCreator: null | any = null
-const statusHandlerCreator =(dispatch:any)=> {
+const statusHandlerCreator =(dispatch:Dispatch<actionsTypes>)=> {
     if (_statusHandlerCreator === null) {
         _statusHandlerCreator = (status:string) => {
             dispatch(setStatus(status))
@@ -88,19 +93,18 @@ const statusHandlerCreator =(dispatch:any)=> {
     }
     return _statusHandlerCreator
 }
-export const startMessagesListening = () => async (dispatch:any) => {
+export const startMessagesListening = ():thunkType => async (dispatch) => {
     chatAPI.start()
     chatAPI.subscribe('messages-received', newMessagesHandlerCreator(dispatch))
     chatAPI.subscribe('status-changed', statusHandlerCreator(dispatch))
 }
-export const stopMessagesListening = () => async (dispatch:any) => {
+export const stopMessagesListening = ():thunkType => async (dispatch) => {
     dispatch(deleteMessages())
     chatAPI.unsubcribe('messages-received',newMessagesHandlerCreator(dispatch))
     chatAPI.unsubcribe('status-changed',statusHandlerCreator(dispatch))
     chatAPI.stop()
 }
 export const sendMessage = (message:string) => async () => {
-    debugger
     chatAPI.sendMessage(message)
 }
 
