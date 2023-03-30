@@ -7,7 +7,6 @@ import './Profile.css'
 import ProfileData from './ProfileData/ProfileData'
 import ProfileDataForm from './ProfileData/ProfileDataForm'
 import ProfileStatus from './ProfileInfo/ProfileStatus'
-
 const Profile = ({profileId,router,status,updateStatusThunk,newPostText,postsList,saveProfile,onChangeNewPost,onAddPost,addPhoto}) => {
     let [edit, setEdit] = useState(false)
     const textPost = React.createRef()
