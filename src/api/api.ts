@@ -12,7 +12,7 @@ type getUsersApiType ={
     items: UserType[]
     totalCount:number
 }
-type responseType<d={},RC=resultCode> ={
+type responseType<d={},RC=resultCode|captchaCode> ={
     resultCode: RC
     fieldsErrors: string[]
     messages: string[]
@@ -22,16 +22,10 @@ type authApi ={
     id:number,email:string,login:string
 }
 type loginAuth ={
-    resultCode: captchaCode
-    fieldsErrors: string[]
-    messages: string[]
-    data: {userId:number}
+    userId:number
 }
 type updatePhoto ={
-    resultCode: resultCode
-    fieldsErrors: string[]
-    messages: string[]
-    data: {photos:photosType}
+    photos:photosType
 }
 export const getUsers = async (page:number, pageSize:number) => {
     const res = await instance.get<getUsersApiType>(`users?page=${page}&count=${pageSize}`)
@@ -62,7 +56,7 @@ export const updateStatusProfile = async (status:string) => {
     return res.data
 }
 export const loginAuth = async (email:string,password:string,rememberMe:boolean,captcha:string) => {
-    const res = await instance.post<loginAuth>(`/auth/login/`, { email, password, rememberMe, captcha })
+    const res = await instance.post<responseType<loginAuth>>(`/auth/login/`, { email, password, rememberMe, captcha })
     return res.data
 }
 export const logoutAuth = async () => {
@@ -72,7 +66,7 @@ export const logoutAuth = async () => {
 export const updatePhoto = async (photo:any) => {
     let data = new FormData()
     data.append('image', photo)
-    const res = await instance.put<updatePhoto>(`/profile/photo`, data, {
+    const res = await instance.put<responseType<updatePhoto>>(`/profile/photo`, data, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
