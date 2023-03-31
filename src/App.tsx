@@ -9,9 +9,9 @@ import { connect } from 'react-redux';
 import { initalApp } from './Components/Redux/app-reducer';
 import Preloader from './Components/common/Preloader';
 import NavContainer from './Components/Nav/Nav-Container';
-import MessagesContainer from './Components/Messages/Messages-Container';
 import { appStateType } from 'Components/Redux/redux-store';
 import UsersContainer from 'Components/Users/Users-Container';
+import Messages from 'Components/Messages/Messages';
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchType = {
   initalApp:()=>void
@@ -28,7 +28,7 @@ const App:React.FC<MapPropsType&MapDispatchType&appStateType>=(props)=> {
           <Routes>
             <Route path="/" element={<Navigate to="/profile" />} />
             <Route path='/Profile/:userId?' element={<ProfileContainer />} />
-            <Route path='/Messages/*'  element={<MessagesContainer/>} />
+            <Route path='/Messages/*'  element={<Messages/>} />
             <Route path='/Users'  element={<UsersContainer/>} />
             <Route path='/login' element={<Login/>} />
           </Routes>

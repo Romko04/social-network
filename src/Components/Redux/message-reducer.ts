@@ -23,7 +23,7 @@ export type setStatusActionType = {
 export type deleteMessagesActionType = {
     type: typeof delete_messages,
 }
-type actionsTypes = setMessagesActionType|setStatusActionType|deleteMessagesActionType
+export type actionsTypes = setMessagesActionType|setStatusActionType|deleteMessagesActionType
 export const setMessages = (messages: message[]):setMessagesActionType => {
     return {
         type: set_messages,
@@ -41,15 +41,15 @@ export const deleteMessages = ():deleteMessagesActionType => {
         type: delete_messages,
     }
 } 
-export type initialStateType = {
+export type MessagesInitialStateType = {
     messages: message[],
-    status: 'pending' | 'ready'
+    status: string
 }
-let initialState:initialStateType = {
+let initialState = {
     messages: [],
     status: 'pending'
 }
-const messageRegucer = (state = initialState, action:actionsTypes) => {
+const messageRegucer = (state = initialState, action:actionsTypes):MessagesInitialStateType => {
     switch (action.type) {
         case set_messages:{
             return{

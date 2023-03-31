@@ -1,17 +1,16 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startMessagesListening, stopMessagesListening } from '../Redux/message-reducer.ts'
+import { actionsTypes, MessagesInitialStateType, message, startMessagesListening, stopMessagesListening } from '../Redux/message-reducer'
 import Message from './Message/Message'
 import MessageForm from './Messages-Form'
 import MessagesLoader from './Messages-loader'
 import './Messages.css'
+import { appStateType } from 'Components/Redux/redux-store'
+import { ThunkDispatch } from 'redux-thunk'
 const Messages = () => {
-    const {messages, status} = useSelector((state) => state.dialogsPage)
+    const {messages, status}:MessagesInitialStateType = useSelector((state:appStateType) => state.dialogsPage)
     const messagesEndRef = useRef(null);
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-    },[messages])
+    const dispatch:ThunkDispatch<appStateType,void,actionsTypes> = useDispatch()
     useEffect(() => {
         dispatch(startMessagesListening())
         return () => {
