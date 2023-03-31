@@ -13,7 +13,9 @@ import { connect } from 'react-redux';
 import { getNewPostText, getPostsList, getProfileId, getStatus } from '../Redux/profile-selectors';
 import { postType, ProfileIdDataType, routerType, SelectedFile } from 'types/types';
 import { appStateType } from 'Components/Redux/redux-store';
-const ProfileContainer:React.FC<x> = (props) => {
+import { saveProfileDataType } from './ProfileData/ProfileDataForm';
+type ProfileContainerType = mapStateToPropsType & mapDispatchToPropsType & ownProps
+const ProfileContainer:React.FC<ProfileContainerType> = (props) => {
     let {statusUserThunk,profileUserThunk} = props
     useEffect(()=>{
         let userId = props.router.params.userId
@@ -35,11 +37,10 @@ type mapDispatchToPropsType = {
     statusUserThunk:(id:number) =>void,
     updateStatusThunk:(status:string)=>void
     addPhoto: (file:SelectedFile) => void
-    saveProfile: (data:ProfileIdDataType) => void
+    saveProfile: (data:saveProfileDataType) => void
 
 }
-type y = {router: routerType}
-type x = mapStateToPropsType & mapDispatchToPropsType & y 
+type ownProps = {router: routerType}
 let mapStateToProps = (state:appStateType):mapStateToPropsType=>{
     return {
         profileId: getProfileId(state),
@@ -69,7 +70,7 @@ type RouterProps = {
   
   
 export default compose(
-    connect<mapStateToPropsType,mapDispatchToPropsType,y,appStateType>(mapStateToProps,{createActionChangePost,createActionAddPost,setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto,saveProfile}),
+    connect<mapStateToPropsType,mapDispatchToPropsType,ownProps,appStateType>(mapStateToProps,{createActionChangePost,createActionAddPost,setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto,saveProfile}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

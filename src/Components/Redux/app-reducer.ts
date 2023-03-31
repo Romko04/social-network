@@ -1,4 +1,4 @@
-import { authThunk } from "./auth-reducer.ts"
+import { authThunk } from "./auth-reducer"
 
 
 const set_initial_app = 'set_initial_app'

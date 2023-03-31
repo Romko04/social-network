@@ -1,10 +1,10 @@
 import './ProfileData.css'
 import React from 'react'
-import { ProfileIdDataType } from 'types/types'
+import { ProfileIdDataType, routerType } from 'types/types'
 type profileDataProps = {
-    setEdit:(boolean)=>void
+    setEdit:(edit:boolean)=>void
     profileId:ProfileIdDataType
-    router: any
+    router: routerType
 }
 const ProfileData:React.FC<profileDataProps> = ({setEdit, profileId, router}) => {
     return (
@@ -36,7 +36,8 @@ const ProfileData:React.FC<profileDataProps> = ({setEdit, profileId, router}) =>
         </div>
     )
 }
-const Contact = ({ contactTitle, contactValue, }) => {
+type contatProps = {contactTitle:string, contactValue:string}
+const Contact:React.FC<contatProps> = ({ contactTitle, contactValue }) => {
     return (
         <div>
             <span className='profile__data-item-title profile--data'>{contactTitle}</span>: <span className='profile__data-item-value profile--data'>{contactValue || 'Немає даних'}</span>

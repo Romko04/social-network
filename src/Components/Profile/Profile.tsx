@@ -5,7 +5,7 @@ import Bacground from '../../img/backphone.jpg'
 import { ReactComponent as Upload } from '../../icons/uploadphoto.svg'
 import './Profile.css'
 import ProfileData from './ProfileData/ProfileData'
-import ProfileDataForm from './ProfileData/ProfileDataForm'
+import ProfileDataForm, { saveProfileDataType } from './ProfileData/ProfileDataForm'
 import ProfileStatus from './ProfileInfo/ProfileStatus'
 import { postType, ProfileIdDataType, routerType, SelectedFile } from 'types/types'
 type ProfilePropsType = {
@@ -15,7 +15,7 @@ type ProfilePropsType = {
     updateStatusThunk:(status:string)=>void
     newPostText:string
     postsList:postType[]
-    saveProfile:(data:ProfileIdDataType)=>void
+    saveProfile:(data:saveProfileDataType)=>void
     createActionChangePost:(text:string)=>void
     createActionAddPost:()=>void
     addPhoto:(file:SelectedFile)=>void

@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import './ProfileStatus.css'
-const ProfileStatus = (props) => {
+type ProfileStatus = {
+    updateStatusThunk:(status:string)=>void
+    status:string
+    userId:number
+}
+const ProfileStatus:React.FC<ProfileStatus> = ({updateStatusThunk,status,userId}) => {
     let [editMode, setEdit] = useState(false)
-    let [stat, setStatus] = useState(props.status)
+    let [stat, setStatus] = useState(status)
     const deactiveEditMode = () => {
         setEdit(false)
-        props.updateStatusThunk(stat)
+        updateStatusThunk(stat)
     }
     const activeEditMode = () => {
-        debugger
-        if (!props.userId) {
+        if (!userId) {
             setEdit(true)
         }
     }
@@ -17,14 +21,13 @@ const ProfileStatus = (props) => {
         setStatus(e.currentTarget.value)
     }
     useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+        setStatus(status)
+    }, [status])
     return (
         <div className="status">
-            {/* {props.userId&& <span className="status__text">{props.status || 'Немає статусу'}</span>} */}
-            {editMode && !props.userId
+            {editMode && !userId
                 ? <input onChange={changeStatus}  autoFocus={true} onBlur={deactiveEditMode} type="text" className="status__input" value={stat} />
-                : <span title='Поміняти статус' onDoubleClick={activeEditMode} className="status__text">{props.status || 'Немає статусу'}</span>
+                : <span title='Поміняти статус' onDoubleClick={activeEditMode} className="status__text">{status || 'Немає статусу'}</span>
             }
         </div>
     )

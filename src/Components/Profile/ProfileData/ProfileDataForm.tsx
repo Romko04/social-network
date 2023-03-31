@@ -1,7 +1,13 @@
 import { useFormik } from 'formik'
 import React from 'react'
-
-const ProfileDataForm = (props) => {
+import { ProfileIdDataType, contactsType } from 'types/types'
+export type saveProfileDataType = {aboutMe:string,contacts:contactsType,fullName:string,lookingForAJob:boolean,lookingForAJobDescription:string}
+type ProfileDataFormType = {
+    saveProfile:(res:saveProfileDataType)=>void
+    setEdit:(edit:boolean)=>void
+    profileId:saveProfileDataType
+} 
+const ProfileDataForm:React.FC<ProfileDataFormType> = (props) => {
     let { saveProfile, setEdit, profileId } = props
     const formik = useFormik({
         initialValues: {
@@ -13,6 +19,7 @@ const ProfileDataForm = (props) => {
                 facebook: profileId.contacts.facebook,
                 github: profileId.contacts.github,
                 instagram: profileId.contacts.instagram,
+                website: profileId.contacts.website,
                 mainLink: profileId.contacts.mainLink,
                 twitter: profileId.contacts.twitter,
                 vk: profileId.contacts.vk,
