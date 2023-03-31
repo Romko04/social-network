@@ -1,11 +1,12 @@
 import { appStateType } from "Components/Redux/redux-store"
-import { followingInProgressType, UserType } from "Components/Redux/users-reducer"
+import { followingInProgressType} from "Components/Redux/users-reducer"
 import React from "react"
 import { useSelector } from "react-redux"
 import Pagination from "./Pagination/Pagination"
 import User from "./User/user"
 import UserLoader from "./User/User-loader/User-loader"
 import './Users.css'
+import { UserType } from "types/types"
 
 export type UsersPropsType = {
     unFollowUserThunk: (userId: number) => void

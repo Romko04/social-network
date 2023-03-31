@@ -70,7 +70,7 @@ type RouterProps = {
   
   
 export default compose(
-    connect<mapStateToPropsType,mapDispatchToPropsType,ownProps,appStateType>(mapStateToProps,{createActionChangePost,createActionAddPost,setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto,saveProfile}),
+    connect<mapStateToPropsType,mapDispatchToPropsType,{},appStateType>(mapStateToProps,{createActionChangePost,createActionAddPost,setProfileId,profileUserThunk,statusUserThunk,updateStatusThunk,addPhoto,saveProfile}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

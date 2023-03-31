@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import React from 'react'
-import { ProfileIdDataType, contactsType } from 'types/types'
+import { contactsType } from 'types/types'
 export type saveProfileDataType = {aboutMe:string,contacts:contactsType,fullName:string,lookingForAJob:boolean,lookingForAJobDescription:string}
 type ProfileDataFormType = {
     saveProfile:(res:saveProfileDataType)=>void

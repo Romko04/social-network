@@ -9,15 +9,14 @@ import { connect } from 'react-redux';
 import { initalApp } from './Components/Redux/app-reducer';
 import Preloader from './Components/common/Preloader';
 import NavContainer from './Components/Nav/Nav-Container';
-import UsersContainer from './Components/Users/Users-Container';
 import MessagesContainer from './Components/Messages/Messages-Container';
 import { appStateType } from 'Components/Redux/redux-store';
+import UsersContainer from 'Components/Users/Users-Container';
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchType = {
   initalApp:()=>void
 }
-const App:React.FC<MapPropsType&MapDispatchType>=(props)=> {
-  console.log(props); 
+const App:React.FC<MapPropsType&MapDispatchType&appStateType>=(props)=> {
   props.initalApp ()
   return (
     !props.initial
@@ -40,4 +39,4 @@ const App:React.FC<MapPropsType&MapDispatchType>=(props)=> {
 const mapStateToProps = (state:appStateType) => ({
   initial: state.app.inital
 })
-export default connect(mapStateToProps,{initalApp})(App);
+export default connect<MapPropsType,MapDispatchType,{},appStateType>(mapStateToProps,{initalApp})(App);

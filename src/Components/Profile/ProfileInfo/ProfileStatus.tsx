@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './ProfileStatus.css'
-type ProfileStatus = {
+type ProfileStatusType = {
     updateStatusThunk:(status:string)=>void
     status:string
     userId:number
 }
-const ProfileStatus:React.FC<ProfileStatus> = ({updateStatusThunk,status,userId}) => {
+const ProfileStatus:React.FC<ProfileStatusType> = ({updateStatusThunk,status,userId}) => {
     let [editMode, setEdit] = useState(false)
     let [stat, setStatus] = useState(status)
     const deactiveEditMode = () => {
