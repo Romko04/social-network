@@ -2,6 +2,7 @@ import { captchaCode, resultCode, setUserTypeData } from './../../types/types';
 import { appStateType } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
 import { authApi, getCaptcha, loginAuth, logoutAuth } from "../../api/api"
+import { profileUserThunk } from './profile-reducer';
 
 const set_user_data = 'set_user_data'
 const set_captcha = 'setCaptcha'
@@ -71,6 +72,7 @@ export const authThunk = ():thunkType => {
     return async (dispatch) => {
        const data = await authApi()
         let { email, id, login } = data.data
+        dispatch(profileUserThunk(id))
         if (data.resultCode === resultCode.succes) {
             dispatch(setUserData(id, email, login, true))
         }

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { getNewPostText, getPostsList, getProfileId, getStatus } from '../Redux/profile-selectors';
 import { postType, ProfileIdDataType, routerType, SelectedFile } from 'types/types';
 import { appStateType } from 'Components/Redux/redux-store';
@@ -17,12 +17,13 @@ import { saveProfileDataType } from './ProfileData/ProfileDataForm';
 type ProfileContainerType = mapStateToPropsType & mapDispatchToPropsType & ownProps
 const ProfileContainer:React.FC<ProfileContainerType> = (props) => {
     let {statusUserThunk,profileUserThunk} = props
+    let id = useSelector((state:appStateType)=>state.auth.id)
     useEffect(()=>{
         let userId = props.router.params.userId
-        if (!userId) userId = 27942
+        if (!userId && id !== null) userId = id
             profileUserThunk(userId)
             statusUserThunk(userId)
-    },[props.router.params.userId,profileUserThunk,statusUserThunk ])
+    },[props.router.params.userId,profileUserThunk,statusUserThunk,id ])
     return (
         <Profile {...props} />
     )

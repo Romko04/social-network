@@ -33,8 +33,8 @@ const validate = (values: FormValues): FormikErrors<FormValues> => {
   }
   if (!values.password) {
     errors.password = 'Required';
-  } else if (values.password.length < 5 || values.password.length > 15) {
-    errors.password = 'Must be more 5 characters or less 15';
+  } else if (values.password.length < 3 || values.password.length > 15) {
+    errors.password = 'Must be more 3 characters or less 15';
   }
 
   return errors;
