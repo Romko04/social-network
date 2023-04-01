@@ -89,6 +89,7 @@
   }
   @media screen and (max-width: 768px) {
     .messages{
+      grid-area: c;
       margin: 0;
       padding-bottom: 100px;
     }

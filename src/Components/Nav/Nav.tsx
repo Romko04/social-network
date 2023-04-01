@@ -14,16 +14,16 @@ const Nav:React.FC<navPropsType> = ({logoutThunk,auth}) => {
     return (
         <nav className='nav'>
             <NavLink className={({ isActive }) => isActive ? 'active nav__link' : 'nav__link'} to="/Profile">
-                <Profile className='profile__icon'/> Profile
+                <Profile className='profile__icon'/> <span className="profile__nav-link-value">Profile</span>
             </NavLink>
             <NavLink className={({ isActive }) => isActive ? 'active nav__link' : 'nav__link'} to="/Messages">
-                <Messages className='profile__icon'/> Messages
+                <Messages className='profile__icon'/> <span className="profile__nav-link-value">Messages</span>
             </NavLink>
             <NavLink className={({ isActive }) => isActive ? 'active nav__link' : 'nav__link'} to="/Users">
-                <Users className='profile__icon'/> Users
+                <Users className='profile__icon'/> <span className="profile__nav-link-value">Users</span>
             </NavLink>
             {auth&&<button className='nav__link logout' onClick={logoutThunk}>
-                <Logout className='profile__icon'/> Logout
+                <Logout className='profile__icon'/> <span className="profile__nav-link-value">Logout</span>
             </button>}
         </nav>
     )

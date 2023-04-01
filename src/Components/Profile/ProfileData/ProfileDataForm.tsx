@@ -36,7 +36,7 @@ const ProfileDataForm:React.FC<ProfileDataFormType> = (props) => {
             <div className="profile__data-items">
                 <form onSubmit={formik.handleSubmit}>
                     <button className='profile__data-btn' type='submit'>Save</button>
-                    <div key={1} className="profile__data-item">
+                    <div key={1} className="profile__data-item profile__data-item-first">
                         <span className="profile__data-item-title">aboutMe:</span>
                         <input className='profile__data-form__input' type="text" key={'AboutMe'} onChange={formik.handleChange} value={formik.values.aboutMe} name="aboutMe" id="" />
                     </div>

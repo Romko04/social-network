@@ -65,7 +65,7 @@
             bottom: 0;
             z-index: 2;
         }
-        .nav_link-value{
+        .profile__nav-link-value{
             display: none;
         }
         .profile__icon{

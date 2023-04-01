@@ -1,6 +1,6 @@
 import { appStateType } from "Components/Redux/redux-store"
 import { followingInProgressType} from "Components/Redux/users-reducer"
-import React from "react"
+import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
 import Pagination from "./Pagination/Pagination"
 import User from "./User/user"
@@ -19,7 +19,9 @@ export type UsersPropsType = {
     onChangePage: (p:number)=>void
 }
 const Users: React.FC<UsersPropsType> = ({ unFollowUserThunk, followUserThunk, followingProgress, followingInProgress, totalCount,pageSize,currentPage,onChangePage}) => {
-
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
     let { users, isFetching } = useSelector((state: appStateType) => state.usersPage)
     return (
         <div className="users">

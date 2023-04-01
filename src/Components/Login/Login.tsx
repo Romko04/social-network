@@ -1,9 +1,11 @@
 import React from 'react';
-import { useFormik, FormikErrors, FormikValues } from 'formik';
+import { useFormik, FormikErrors } from 'formik';
 import './Login.css';
-import { connect, ConnectedProps } from 'react-redux';
-import { deleteCaptcha, loginThunk } from '../Redux/auth-reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { authActionsTypes, deleteCaptcha, loginThunk } from '../Redux/auth-reducer';
 import { Navigate } from 'react-router-dom';
+import { appStateType } from 'Components/Redux/redux-store';
+import { ThunkDispatch } from 'redux-thunk';
 
 interface FormValues {
   email: string;
@@ -13,14 +15,14 @@ interface FormValues {
   apiError?: string
 }
 interface PropsFromRedux {
-  captcha: { url: string };
+  captcha: string | null
   deleteCaptcha: () => void;
   isAuth: boolean;
   loginThunk: (
     email: string,
     password: string,
     rememberMe: boolean,
-    captcha: string | null,
+    captcha: string ,
     setErrors: (errors: { [key: string]: string }) => void
   ) => void;
 }
@@ -41,8 +43,7 @@ const validate = (values: FormValues): FormikErrors<FormValues> => {
 };
 
 const LoginForm = (props: PropsFromRedux) => {
-  console.log(props);
-  
+  const dispatch:ThunkDispatch<appStateType,unknown,authActionsTypes> = useDispatch()
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -52,8 +53,9 @@ const LoginForm = (props: PropsFromRedux) => {
     },
     validate,
     onSubmit: (values: FormValues) => {
-      props.deleteCaptcha();
-      props.loginThunk(values.email, values.password, values.rememberMe, values.captcha, formik.setErrors);
+      deleteCaptcha();
+      dispatch(loginThunk(values.email, values.password, values.rememberMe, values.captcha, formik.setErrors))
+      
     },
   });
 
@@ -91,7 +93,7 @@ const LoginForm = (props: PropsFromRedux) => {
         />
         <label className="login__label">Remember Me</label>
       </div>
-      {props.captcha && <div><img src={props.captcha.url} alt="" /></div>}
+      {props.captcha && <div><img src={props.captcha || ''} alt="" /></div>}
       {props.captcha && (
         <div>
           <input
@@ -101,7 +103,7 @@ const LoginForm = (props: PropsFromRedux) => {
             name="captcha"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.captcha}
+            value={formik.values.captcha || ''}
           />
         </div>
       )}
@@ -110,16 +112,13 @@ const LoginForm = (props: PropsFromRedux) => {
     </form>
   );
 };
-const Login = (props) => {
-  if (props.isAuth) return <Navigate to='/Profile' />
+const Login = () => {
+  const {isAuth, captcha} = useSelector((state:appStateType)=>state.auth)
+  if (isAuth) return <Navigate to='/Profile' />
   return (
     <div className='login'>
-      <LoginForm {...props} />
+      <LoginForm {...{captcha,loginThunk,deleteCaptcha,isAuth}} />
     </div>
   );
 }
-const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth,
-  captcha: state.auth.captcha
-})
- export default connect(mapStateToProps,{loginThunk,deleteCaptcha})(Login);
+export default Login

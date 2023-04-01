@@ -5,7 +5,7 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProfileContainer from './Components/Profile/Profile-Container';
 import HeaderContainer from './Components/Header/Header-Container';
 import Login from './Components/Login/Login';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { initalApp } from './Components/Redux/app-reducer';
 import Preloader from './Components/common/Preloader';
 import NavContainer from './Components/Nav/Nav-Container';
@@ -17,6 +17,7 @@ type MapDispatchType = {
   initalApp:()=>void
 }
 const App:React.FC<MapPropsType&MapDispatchType&appStateType>=(props)=> {
+  const isAuth = useSelector((state:appStateType)=>state.auth.isAuth)
   props.initalApp ()
   return (
     !props.initial
@@ -28,7 +29,7 @@ const App:React.FC<MapPropsType&MapDispatchType&appStateType>=(props)=> {
           <Routes>
             <Route path="/" element={<Navigate to="/profile" />} />
             <Route path='/Profile/:userId?' element={<ProfileContainer />} />
-            <Route path='/Messages/*'  element={<Messages/>} />
+            <Route path='/Messages/*'  element={isAuth?<Messages/>:<Login/>} />
             <Route path='/Users'  element={<UsersContainer/>} />
             <Route path='/login' element={<Login/>} />
           </Routes>

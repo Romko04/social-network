@@ -10,7 +10,7 @@ const ProfileData:React.FC<profileDataProps> = ({setEdit, profileId, router}) =>
     return (
         <div className="profile__data-items">
             {!router?.params.userId && <button className='profile__data-btn' onClick={() => setEdit(true)}>Edit</button>}
-            <div className="profile__data-item">
+            <div className="profile__data-item profile__data-item-first">
                 <span className="profile__data-item-title">AboutMe:</span>
                 <span className="profile__data-item-value">{profileId.aboutMe}</span>
             </div>

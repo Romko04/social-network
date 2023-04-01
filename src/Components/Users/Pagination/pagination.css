@@ -1,5 +1,6 @@
 .pagination {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -24,3 +25,9 @@
     background-color: #333;
     color: #fff;
   }
+
+@media screen and (max-width: 768px) {
+  .pagination{
+    gap: 10px;
+  }
+}

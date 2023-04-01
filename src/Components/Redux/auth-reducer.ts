@@ -25,7 +25,7 @@ export type setCaptchaTypeAction = {
 export type deleteCaptchaTypeAction = {
     type: typeof delete_captcha,
 }
-type actionsTypes = setUserDataTypeAction|setCaptchaTypeAction|deleteCaptchaTypeAction
+export type authActionsTypes = setUserDataTypeAction|setCaptchaTypeAction|deleteCaptchaTypeAction
 export const setUserData = (id:number|null, email:string|null, login:string|null, isAuth:boolean):setUserDataTypeAction => {
     return {
         type: set_user_data,
@@ -43,7 +43,7 @@ let initialState:initialStateType = {
     isAuth: false,
     captcha: null
 }
-const authReducer = (state = initialState, action:actionsTypes):initialStateType => {
+const authReducer = (state = initialState, action:authActionsTypes):initialStateType => {
     switch (action.type) {
         case set_user_data: {
             return {
@@ -67,7 +67,7 @@ const authReducer = (state = initialState, action:actionsTypes):initialStateType
             return state 
     }
 }
-type thunkType = ThunkAction<Promise<void>,appStateType,unknown,actionsTypes>
+type thunkType = ThunkAction<Promise<void>,appStateType,unknown,authActionsTypes>
 export const authThunk = ():thunkType => {
     return async (dispatch) => {
        const data = await authApi()

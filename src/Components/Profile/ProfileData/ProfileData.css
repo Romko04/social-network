@@ -10,16 +10,22 @@
     font-size: 18px;
     color: #644e4e;
     margin-left: 10px;
+    overflow-wrap: break-word
 }
-.profile__data-btn{
-    margin-left: 80%;
+.profile__data-item-first{
+    margin-top: 70px;
+}
+.profile__data-btn {
+    background: #f8f8f8;
     border: none;
-    background: #F8F8F8;
-    padding: 0.7em 2em;
     border-radius: 40px;
-    font-size: 17px;
     color: #4d3c3c;
     cursor: pointer;
+    font-size: 17px;
+    padding: .7em 2em;
+    position: absolute;
+    top: 25px;
+    right: 50px;
 }
 
 .profile__data-form__input:focus{
