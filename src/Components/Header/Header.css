@@ -34,3 +34,8 @@
     align-items: center;
     gap: 20px;
 }
+@media screen and (max-width: 768px) {
+    .header__logo-title{
+        display: none;
+    }
+}

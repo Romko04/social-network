@@ -87,3 +87,16 @@
     background-color: #ebecec;
     cursor:unset;
   }
+  @media screen and (max-width: 768px) {
+    .messages{
+      margin: 0;
+      padding-bottom: 100px;
+    }
+    .message__dialog {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding-left: 10px;
+  }
+  }

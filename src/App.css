@@ -15,3 +15,26 @@
 a{
     text-decoration: none;
 }
+@media screen and (max-width: 768px) {
+    .wrapper{
+        font-family: 'Open Sans', sans-serif;
+        display: grid;
+        gap: 10px;
+        max-width: 100%;
+        margin: 0 auto;
+        grid-template-areas:
+        "h h"
+        "c c"
+        "n n"
+        ;
+    
+        grid-template-rows: 80px 1fr;
+        grid-template-columns: 2fr 10fr;
+    }
+    .profile__backgroung-img {
+        object-fit: cover;
+      }
+    .profile__data-items{
+        width: 80%;
+    }
+}

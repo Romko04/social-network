@@ -76,3 +76,11 @@
   transform: scale(1.5);
   margin-right: 10px;
 }
+@media screen and (max-width: 768px) {
+  .login{
+    grid-area: c;
+  }
+  .login__form{
+    width: 80%;
+  }
+}
