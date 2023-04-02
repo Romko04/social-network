@@ -117,6 +117,11 @@ const Login = () => {
   if (isAuth) return <Navigate to='/Profile' />
   return (
     <div className='login'>
+      <div className='test__auth'>
+        <h4>Дані для тестового аккаунта</h4>
+        <span>Логін: free@samuraijs.com</span>
+        <span>Пароль: free</span>
+      </div>
       <LoginForm {...{captcha,loginThunk,deleteCaptcha,isAuth}} />
     </div>
   );
